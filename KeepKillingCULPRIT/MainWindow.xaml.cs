@@ -427,6 +427,55 @@ namespace KeepKillingCULPRIT
 
 		#endregion
 
+		#region panelWordpoc
+
+		private void panelWordpocTextBox1TextChanged(object sender, TextChangedEventArgs e)
+		{
+			string wordpoc = ((TextBox)sender).Text;
+			if (wordpoc.Length > 0)
+			{
+				int sum = 0;
+				foreach (char c in wordpoc.ToCharArray())
+				{
+					switch (c) {
+						case 'a': case 'A': sum += 3; break;
+						case 'b': case 'B': sum += 2; break;
+						case 'c': case 'C': sum += 3; break;
+						case 'd': case 'D': sum += 3; break;
+						case 'e': case 'E': sum += 3; break;
+						case 'f': case 'F': sum += 5; break;
+						case 'g': case 'G': sum += 3; break;
+						case 'h': case 'H': sum += 4; break;
+						case 'i': case 'I': sum += 3; break;
+						case 'j': case 'J': sum += 5; break;
+						case 'k': case 'K': sum += 5; break;
+						case 'l': case 'L': sum += 7; break;
+						case 'm': case 'M': sum += 5; break;
+						case 'n': case 'N': sum += 5; break;
+						case 'o': case 'O': sum += 5; break;
+						case 'p': case 'P': sum += 5; break;
+						case 'q': case 'Q': sum += 4; break;
+						case 'r': case 'R': sum += 4; break;
+						case 's': case 'S': sum += 5; break;
+						case 't': case 'T': sum += 3; break;
+						case 'u': case 'U': sum += 5; break;
+						case 'v': case 'V': sum += 2; break;
+						case 'w': case 'W': sum += 7; break;
+						case 'x': case 'X': sum += 1; break;
+						case 'y': case 'Y': sum += 6; break;
+						case 'z': case 'Z': sum += 6; break;
+					}
+				}
+				this.panelWordpocTextBlock1.Text = sum.ToString();
+			}
+			else
+			{
+				this.panelWordpocTextBlock1.Text = string.Empty;
+			}
+		}
+
+		#endregion
+
 		#region panelConfiguration
 
 		#endregion
