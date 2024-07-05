@@ -70,8 +70,8 @@
 				</StackPanel>
 
 				<StackPanel x:Name="panelTimer" Tag="Timer" Visibility="Visible">
-					<TextBlock x:Name="panelTimerTextBlockTimeCountCurrent" FontSize="100" Margin="0, 0, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="{StaticResource colorBrush1}" Text="Foo Bar" />
-					<TextBlock x:Name="panelTimerTextBlockSessionCountCurrent" FontSize="100" Margin="0, 0, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="{StaticResource colorBrush1}" Text="Foo Bar" />
+					<TextBlock x:Name="panelTimerTextBlockTimeCountCurrent" FontSize="100" Margin="0, 0, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="{StaticResource colorBrush1}" Text="" />
+					<TextBlock x:Name="panelTimerTextBlockSessionCountCurrent" FontSize="33" Margin="0, 0, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="{StaticResource colorBrush1}" Text="" />
 				</StackPanel>
 
 				<StackPanel x:Name="panelWordforest" Tag="Word Forest" Visibility="Collapsed">

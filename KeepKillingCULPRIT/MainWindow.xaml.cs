@@ -98,9 +98,9 @@ namespace KeepKillingCULPRIT
 			hotkey.addRegister(HotkeyAction.Action1, new HotkeyCombination { modifier = KeyboardCode.Modifier.Alt, key = KeyboardCode.Key.S }, this.topBarToggleButtonSummeryToggle);
 			hotkey.addRegister(HotkeyAction.Action91, new HotkeyCombination { modifier = KeyboardCode.Modifier.Control, key = KeyboardCode.Key.Left }, this.slidePanelToLeft);
 			hotkey.addRegister(HotkeyAction.Action92, new HotkeyCombination { modifier = KeyboardCode.Modifier.Control, key = KeyboardCode.Key.Right }, this.slidePanelToRight);
-			hotkey.addRegister(HotkeyAction.Action11, new HotkeyCombination { modifier = KeyboardCode.Modifier.Alt, key = KeyboardCode.Key.Space }, this.killerKill);
+			hotkey.addRegister(HotkeyAction.Action11, new HotkeyCombination { modifier = KeyboardCode.Modifier.Alt, key = KeyboardCode.Key.M }, this.killerKill);
 			hotkey.addRegister(HotkeyAction.Action12, new HotkeyCombination { modifier = KeyboardCode.Modifier.Alt, key = KeyboardCode.Key.A }, this.actionKillerToggleButtonKillAutomaticToggle);
-			hotkey.addRegister(HotkeyAction.Action13, new HotkeyCombination { modifier = KeyboardCode.Modifier.Alt, key = KeyboardCode.Key.T }, this.actionTimerToggleButtonTimeAutomaticToggle);
+			hotkey.addRegister(HotkeyAction.Action13, new HotkeyCombination { modifier = KeyboardCode.Modifier.Alt, key = KeyboardCode.Key.Space }, this.actionTimerToggleButtonTimeAutomaticToggle);
 			hotkey.addRegister(HotkeyAction.Action14, new HotkeyCombination { modifier = KeyboardCode.Modifier.Control, key = KeyboardCode.Key.Up }, this.wordforestRefreshWordsAsync);
 			hotkey.addRegister(HotkeyAction.Action15, new HotkeyCombination { modifier = KeyboardCode.Modifier.Alt, key = KeyboardCode.Key.W }, this.actionWordforestToggleButtonRefreshAutomaticToggle);
 		}
@@ -420,7 +420,7 @@ namespace KeepKillingCULPRIT
 			int hours = (this.timerTimeCountCurrent / 3600) % 3600;
 			int minutes = (this.timerTimeCountCurrent / 60) % 60;
 			int seconds = (this.timerTimeCountCurrent / 1) % 60;
-			this.panelTimerTextBlockSessionCountCurrent.Text = (days).ToString() + ":" + (hours).ToString() + ":" + (minutes).ToString() + ":" + (seconds).ToString();
+			this.panelTimerTextBlockSessionCountCurrent.Text = (days).ToString() + "\\" + (hours).ToString("00") + ":" + (minutes).ToString("00") + ":" + (seconds).ToString("00");
 		}
 
 		#endregion
