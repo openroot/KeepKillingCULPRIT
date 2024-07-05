@@ -63,10 +63,15 @@
 		<Viewbox x:Name="panelBar" Margin="4, 34, 4, 60" Visibility="Visible">
 			<StackPanel x:Name="panelSet">
 
-				<StackPanel x:Name="panelKiller" Tag="Killer" Visibility="Visible">
+				<StackPanel x:Name="panelKiller" Tag="Killer" Visibility="Collapsed">
 					<TextBlock x:Name="panelKillerTextBlockKillCountCurrent" FontSize="100" Margin="0, 0, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="{StaticResource colorBrush1}" Text="Foo Bar" />
 					<TextBlock FontSize="23" Margin="0, 0, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="{StaticResource colorBrush1}" Text="Ending in.. explaining so much  !" />
 					<TextBlock FontSize="11" Margin="0, 0, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="{StaticResource colorBrush1}" Text='Rolling "petrol" "rowing" pending reciprocation: Take East Connect' />
+				</StackPanel>
+
+				<StackPanel x:Name="panelTimer" Tag="Timer" Visibility="Visible">
+					<TextBlock x:Name="panelTimerTextBlockTimeCountCurrent" FontSize="100" Margin="0, 0, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="{StaticResource colorBrush1}" Text="Foo Bar" />
+					<TextBlock x:Name="panelTimerTextBlockSessionCountCurrent" FontSize="100" Margin="0, 0, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="{StaticResource colorBrush1}" Text="Foo Bar" />
 				</StackPanel>
 
 				<StackPanel x:Name="panelWordforest" Tag="Word Forest" Visibility="Collapsed">
@@ -90,9 +95,13 @@
 		<Canvas>
 			<StackPanel x:Name="actionSet" Margin="4, 0, 0, 4" VerticalAlignment="Bottom" Canvas.Bottom="30">
 
-				<StackPanel x:Name="actionKiller" Tag="Killer" Orientation="Horizontal" HorizontalAlignment="Stretch" Visibility="Visible">
+				<StackPanel x:Name="actionKiller" Tag="Killer" Orientation="Horizontal" HorizontalAlignment="Stretch" Visibility="Collapsed">
 					<Button x:Name="actionKillerButtonKillManual" Height="22" Margin="0, 0, 0, 0" Foreground="{StaticResource colorBrush0}" Background="{StaticResource colorBrush1}" Content="Trigger Kill" Click="actionKillerButtonKillManualClick" />
 					<ToggleButton x:Name="actionKillerToggleButtonKillAutomatic" Height="22" Margin="4, 0, 0, 0" Foreground="{StaticResource colorBrush0}" Background="{StaticResource colorBrush1}" Content="Automatic" Checked="actionKillerToggleButtonKillAutomaticChecked" Unchecked="actionKillerToggleButtonKillAutomaticUnchecked" />
+				</StackPanel>
+
+				<StackPanel x:Name="actionTimer" Tag="Timer" Orientation="Horizontal" HorizontalAlignment="Stretch" Visibility="Visible">
+					<ToggleButton x:Name="actionTimerToggleButtonTimeAutomatic" Height="22" Margin="4, 0, 0, 0" Foreground="{StaticResource colorBrush0}" Background="{StaticResource colorBrush1}" Content="Automatic" Checked="actionTimerToggleButtonTimeAutomaticChecked" Unchecked="actionTimerToggleButtonTimeAutomaticUnchecked" />
 				</StackPanel>
 
 				<StackPanel x:Name="actionWordforest" Tag="Word Forest" Orientation="Horizontal" HorizontalAlignment="Stretch" Visibility="Collapsed">

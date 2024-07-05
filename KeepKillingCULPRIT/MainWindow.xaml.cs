@@ -46,7 +46,9 @@ namespace KeepKillingCULPRIT
 		#region panelBar
 
 		private ulong killerKillCountCurrent;
+		private int timerTimeCountCurrent;
 		private DispatcherTimer timerKillerKillAutomatic { get; set; }
+		private DispatcherTimer timerTimerTimeAutomatic { get; set; }
 		private DispatcherTimer timerWordforestRefreshAutomatic { get; set; }
 
 		#endregion
@@ -98,8 +100,9 @@ namespace KeepKillingCULPRIT
 			hotkey.addRegister(HotkeyAction.Action92, new HotkeyCombination { modifier = KeyboardCode.Modifier.Control, key = KeyboardCode.Key.Right }, this.slidePanelToRight);
 			hotkey.addRegister(HotkeyAction.Action11, new HotkeyCombination { modifier = KeyboardCode.Modifier.Alt, key = KeyboardCode.Key.Space }, this.killerKill);
 			hotkey.addRegister(HotkeyAction.Action12, new HotkeyCombination { modifier = KeyboardCode.Modifier.Alt, key = KeyboardCode.Key.A }, this.actionKillerToggleButtonKillAutomaticToggle);
-			hotkey.addRegister(HotkeyAction.Action13, new HotkeyCombination { modifier = KeyboardCode.Modifier.Control, key = KeyboardCode.Key.Up }, this.wordforestRefreshWordsAsync);
-			hotkey.addRegister(HotkeyAction.Action14, new HotkeyCombination { modifier = KeyboardCode.Modifier.Alt, key = KeyboardCode.Key.W }, this.actionWordforestToggleButtonRefreshAutomaticToggle);
+			hotkey.addRegister(HotkeyAction.Action13, new HotkeyCombination { modifier = KeyboardCode.Modifier.Alt, key = KeyboardCode.Key.T }, this.actionTimerToggleButtonTimeAutomaticToggle);
+			hotkey.addRegister(HotkeyAction.Action14, new HotkeyCombination { modifier = KeyboardCode.Modifier.Control, key = KeyboardCode.Key.Up }, this.wordforestRefreshWordsAsync);
+			hotkey.addRegister(HotkeyAction.Action15, new HotkeyCombination { modifier = KeyboardCode.Modifier.Alt, key = KeyboardCode.Key.W }, this.actionWordforestToggleButtonRefreshAutomaticToggle);
 		}
 
 		private void invasiveStoryboards()
@@ -115,6 +118,7 @@ namespace KeepKillingCULPRIT
 		{
 			this.timerTimeElapsedAsync();
 			this.timerKillerKillAutomaticAsync();
+			this.timerTimerTimeAutomaticAsync();
 			this.timerWordforestRefreshAutomaticAsync();
 		}
 
@@ -135,6 +139,7 @@ namespace KeepKillingCULPRIT
 
 			this.bottomBarComboBoxPanelSwitcher.SelectedIndex = 0;
 			this.killerKillCountCurrent = 0;
+			this.timerTimeCountCurrent = 0;
 			this.panelKillerTextBlockKillCountCurrent.Text = this.killerKillCountCurrent.ToString();
 			this.topBarTextBlockKillCountCurrent.Text = this.panelKillerTextBlockKillCountCurrent.Text;
 		}
@@ -360,6 +365,62 @@ namespace KeepKillingCULPRIT
 			string killCountCurrentString = (++this.killerKillCountCurrent).ToString();
 			this.panelKillerTextBlockKillCountCurrent.Text = killCountCurrentString;
 			this.topBarTextBlockKillCountCurrent.Text = killCountCurrentString;
+		}
+
+		#endregion
+
+		#region panelTimer
+
+		private async void timerTimerTimeAutomaticAsync()
+		{
+			this.timerTimerTimeAutomatic = await this.timerTimerTimeAutomaticTaskAsync();
+		}
+
+		private async Task<DispatcherTimer> timerTimerTimeAutomaticTaskAsync()
+		{
+			await Task.Delay(0);
+			DispatcherTimer timer = new DispatcherTimer();
+			timer.Interval = new TimeSpan(0, 0, 0, 1);
+			timer.Tick += this.timerTimerTimeAutomaticTick;
+			return timer;
+		}
+
+		private void timerTimerTimeAutomaticTick(object sender, EventArgs e)
+		{
+			this.timerTime();
+		}
+
+		private void actionTimerToggleButtonTimeAutomaticChecked(object sender, RoutedEventArgs e)
+		{
+			this.timerTimerTimeAutomatic.Start();
+		}
+
+		private void actionTimerToggleButtonTimeAutomaticUnchecked(object sender, RoutedEventArgs e)
+		{
+			this.timerTimerTimeAutomatic.Stop();
+		}
+
+		private void actionTimerToggleButtonTimeAutomaticToggle()
+		{
+			if (this.actionTimerToggleButtonTimeAutomatic.IsChecked ?? false)
+			{
+				this.actionTimerToggleButtonTimeAutomatic.IsChecked = false;
+			}
+			else if (!this.actionTimerToggleButtonTimeAutomatic.IsChecked ?? false)
+			{
+				this.actionTimerToggleButtonTimeAutomatic.IsChecked = true;
+			}
+		}
+
+		private void timerTime()
+		{
+			this.panelTimerTextBlockTimeCountCurrent.Text = DateTime.Now.ToLongTimeString();
+			++this.timerTimeCountCurrent;
+			int days = (this.timerTimeCountCurrent / 86400);
+			int hours = (this.timerTimeCountCurrent / 3600) % 3600;
+			int minutes = (this.timerTimeCountCurrent / 60) % 60;
+			int seconds = (this.timerTimeCountCurrent / 1) % 60;
+			this.panelTimerTextBlockSessionCountCurrent.Text = (days).ToString() + ":" + (hours).ToString() + ":" + (minutes).ToString() + ":" + (seconds).ToString();
 		}
 
 		#endregion
