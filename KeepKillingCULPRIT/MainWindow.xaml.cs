@@ -329,13 +329,6 @@ namespace KeepKillingCULPRIT
 
 		#region panelBar
 
-		private void panelBarSizeChanged(object sender, SizeChangedEventArgs e)
-		{
-			//Console.WriteLine("Width: " + e.NewSize.Width + "; Height: " + e.NewSize.Height);
-			panelAviatorCanvas.Width = e.NewSize.Width;
-			panelAviatorCanvas.Height = e.NewSize.Height;
-		}
-
 		#region panelKiller
 
 		private void actionKillerButtonKillManualClick(object sender, RoutedEventArgs e)
@@ -566,6 +559,15 @@ namespace KeepKillingCULPRIT
 		#endregion
 
 		#endregion
+
+		private void windowSizeChanged(object sender, SizeChangedEventArgs e)
+		{
+			Canvas canvasFrame = (Canvas)panelAviator.Children[0];
+			canvasFrame.Width = e.NewSize.Width;
+			canvasFrame.Height = e.NewSize.Height;
+			panelAviatorCanvas.Width = canvasFrame.Width - (panelAviatorCanvas.Margin.Left * 2);
+			panelAviatorCanvas.Height = canvasFrame.Height - (panelAviatorCanvas.Margin.Top * 2);
+		}
 
 		private void windowClosing(object sender, System.ComponentModel.CancelEventArgs e)
 		{

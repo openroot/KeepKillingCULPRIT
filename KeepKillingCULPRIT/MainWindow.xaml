@@ -6,7 +6,8 @@
 		xmlns:local="clr-namespace:KeepKillingCULPRIT"
 		mc:Ignorable="d"
 		Height="400" Width="850" WindowStyle="ThreeDBorderWindow" Topmost="False" Background="#FFFFFF"
-		Title="KeepKillingCULPRIT [ Kaaju Barfi or Rash Kadaam | H4E3Y6 | Probability is, one selects 'easy' than 'easiest' always. (W5C14) `It's - + architecture, then it is as fast as you can unless write read operation is involved. :)` (W5C16) ]" Closing="windowClosing">
+		Title="KeepKillingCULPRIT [ Kaaju Barfi or Rash Kadaam | H4E3Y6 | Probability is, one selects 'easy' than 'easiest' always. (W5C14) `It's - + architecture, then it is as fast as you can unless write read operation is involved. :)` (W5C16) ]"
+		SizeChanged="windowSizeChanged" Closing="windowClosing">
 
 	<Window.Resources>
 		<SolidColorBrush x:Key="colorBrush0" Color="#FFFFFF" />
@@ -60,7 +61,7 @@
 			</StackPanel>
 		</Canvas>
 		
-		<Viewbox x:Name="panelBar" Margin="4, 34, 4, 60" Visibility="Visible" SizeChanged="panelBarSizeChanged">
+		<Viewbox x:Name="panelBar" Margin="4, 34, 4, 60" Visibility="Visible">
 			<StackPanel x:Name="panelSet">
 
 				<StackPanel x:Name="panelKiller" Tag="Killer" Visibility="Collapsed">
@@ -86,27 +87,10 @@
 				</StackPanel>
 
 				<StackPanel x:Name="panelAviator" Tag="Aviator" Visibility="Visible">
-					<Canvas x:Name="panelAviatorCanvas" Background="Bisque">
-						<Canvas.Resources>
-							<PathGeometry x:Key="MyGeometry" Figures="M 0,30 A 30,30 180 0 1 60,30 30,30 180 0 1 0,30"/>
-						</Canvas.Resources>
-						<Path Fill="Red" Canvas.Left="100" Canvas.Top="100">
-							<Path.Data>
-								<PathGeometry Figures=""/>
-							</Path.Data>
-						</Path>
-						<Ellipse Width="50" Height="50" Fill="Green">
-							<Ellipse.Triggers>
-								<EventTrigger RoutedEvent="Window.Loaded">
-									<BeginStoryboard>
-										<Storyboard RepeatBehavior="Forever">
-											<DoubleAnimationUsingPath Source="X" Storyboard.TargetProperty="(Canvas.Left)" PathGeometry="{StaticResource MyGeometry}"/>
-											<DoubleAnimationUsingPath Source="Y" Storyboard.TargetProperty="(Canvas.Top)" PathGeometry="{StaticResource MyGeometry}"/>
-										</Storyboard>
-									</BeginStoryboard>
-								</EventTrigger>
-							</Ellipse.Triggers>
-						</Ellipse>
+					<Canvas Background="Black">
+						<Canvas x:Name="panelAviatorCanvas" Margin="3" Background="Bisque">
+							<Rectangle Width="10" Height="10" Fill="Black"/>
+						</Canvas>
 					</Canvas>
 				</StackPanel>
 
