@@ -74,6 +74,7 @@ namespace KeepKillingCULPRIT
 				this.parseTimers();
 
 				// Value origin
+				this.originResume();
 				this.originCovers();
 
 				// Trial bypass
@@ -120,6 +121,16 @@ namespace KeepKillingCULPRIT
 			this.timerKillerKillAutomaticAsync();
 			this.timerTimerTimeAutomaticAsync();
 			this.timerWordforestRefreshAutomaticAsync();
+		}
+
+		private void originResume()
+		{
+			Resume resume = new Resume();
+			this.Height = resume.windowHeight;
+			this.Width = resume.windowWidth;
+			this.Top = resume.windowTop;
+			this.Left = resume.windowLeft;
+			this.WindowState = resume.windowState;
 		}
 
 		private void originCovers()
@@ -543,9 +554,57 @@ namespace KeepKillingCULPRIT
 
 		#endregion
 
+		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			Resume resume = new Resume();
+			resume.windowHeight = this.Height;
+			resume.windowWidth = this.Width;
+			resume.windowTop = this.Top;
+			resume.windowLeft = this.Left;
+			resume.windowState = this.WindowState;
+			resume.save();
+		}
+
 		protected override void OnClosed(EventArgs e)
 		{
 			base.OnClosed(e);
+		}
+	}
+
+	public class Resume
+	{
+		public double windowTop { get; set; }
+		public double windowLeft { get; set; }
+		public double windowHeight { get; set; }
+		public double windowWidth { get; set; }
+		public WindowState windowState { get; set; }
+
+		public Resume()
+		{
+			this.load();
+		}
+
+		private void load()
+		{
+			this.windowTop = Properties.Settings.Default.windowTop;
+			this.windowLeft = Properties.Settings.Default.windowLeft;
+			this.windowHeight = Properties.Settings.Default.windowHeight;
+			this.windowWidth = Properties.Settings.Default.windowWidth;
+			this.windowState = Properties.Settings.Default.windowState;
+		}
+
+		public void save()
+		{
+			if (this.windowState != System.Windows.WindowState.Minimized)
+			{
+				Properties.Settings.Default.windowTop = this.windowTop;
+				Properties.Settings.Default.windowLeft = this.windowLeft;
+				Properties.Settings.Default.windowHeight = this.windowHeight;
+				Properties.Settings.Default.windowWidth = this.windowWidth;
+				Properties.Settings.Default.windowState = this.windowState;
+
+				Properties.Settings.Default.Save();
+			}
 		}
 	}
 }
