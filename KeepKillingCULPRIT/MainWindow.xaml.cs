@@ -15,6 +15,8 @@ using KeepKillingCULPRIT.doctrine.transactions.derivatives;
 
 namespace KeepKillingCULPRIT
 {
+	#region main class
+
 	public partial class MainWindow : Window
 	{
 		#region window
@@ -53,6 +55,8 @@ namespace KeepKillingCULPRIT
 		private Aviator aviator { get; set; }
 
 		#endregion
+
+		#region window
 
 		public MainWindow()
 		{
@@ -175,6 +179,8 @@ namespace KeepKillingCULPRIT
 			RestclientConfiguration uselessfactsRestclientConfiguration = new RestclientConfiguration("https://uselessfacts.jsph.pl");
 			this.hostRestclient.addVoucher("uselessfacts", "json", new Restclient(uselessfactsRestclientConfiguration, HttpVerb.GET, "/api/v2/facts/random"));
 		}
+
+		#endregion
 
 		#region topBar
 
@@ -562,6 +568,8 @@ namespace KeepKillingCULPRIT
 
 		#endregion
 
+		#region window
+
 		private void windowSizeChanged(object sender, SizeChangedEventArgs e)
 		{
 			this.aviator.resetCanvasSize(e.NewSize.Width, e.NewSize.Height);
@@ -582,7 +590,13 @@ namespace KeepKillingCULPRIT
 		{
 			base.OnClosed(e);
 		}
+
+		#endregion
 	}
+
+	#endregion
+
+	#region helper class
 
 	public class Resume
 	{
@@ -639,4 +653,6 @@ namespace KeepKillingCULPRIT
 			panelAviatorCanvas.Height = canvasFrame.Height - (panelAviatorCanvas.Margin.Top * 2);
 		}
 	}
+
+	#endregion
 }
