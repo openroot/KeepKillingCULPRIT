@@ -86,7 +86,7 @@
 					<TextBox x:Name="panelWordpocTextBox" FontSize="9" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="{StaticResource colorBrush1}" Text="" TextChanged="panelWordpocTextBoxTextChanged" />
 				</StackPanel>
 
-				<StackPanel x:Name="panelAviator" Tag="Aviator" Visibility="Visible">
+				<StackPanel x:Name="panelAviator" Tag="Aviator" Visibility="Collapsed">
 					<Canvas Background="Black">
 						<Canvas x:Name="panelAviatorCanvas" Margin="3" Background="Bisque">
 							<Rectangle Width="10" Height="10" Fill="Black"/>
