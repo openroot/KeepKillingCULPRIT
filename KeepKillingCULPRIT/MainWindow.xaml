@@ -81,16 +81,37 @@
 				</StackPanel>
 
 				<StackPanel x:Name="panelWordpoc" Tag="Word POC" Visibility="Collapsed">
-					<TextBlock x:Name="panelWordpocTextBlock1" FontSize="17" Margin="0, 0, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="{StaticResource colorBrush1}" Text="" />
-					<TextBox x:Name="panelWordpocTextBox1" FontSize="9" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="{StaticResource colorBrush1}" Text="" TextChanged="panelWordpocTextBox1TextChanged" />
+					<TextBlock x:Name="panelWordpocTextBlock" FontSize="17" Margin="0, 0, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="{StaticResource colorBrush1}" Text="" />
+					<TextBox x:Name="panelWordpocTextBox" FontSize="9" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="{StaticResource colorBrush1}" Text="" TextChanged="panelWordpocTextBoxTextChanged" />
 				</StackPanel>
 
 				<StackPanel x:Name="panelAviator" Tag="Aviator" Visibility="Visible">
-					<TextBlock x:Name="panelAviatorTextBlock1" FontSize="100" Margin="0, 0, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="{StaticResource colorBrush1}" Text="Aviator" />
+					<Canvas x:Name="panelAviatorCanvas" Background="Bisque">
+						<Canvas.Resources>
+							<PathGeometry x:Key="MyGeometry" Figures="M 0,30 A 30,30 180 0 1 60,30 30,30 180 0 1 0,30"/>
+						</Canvas.Resources>
+						<Path Fill="Red" Canvas.Left="100" Canvas.Top="100">
+							<Path.Data>
+								<PathGeometry Figures=""/>
+							</Path.Data>
+						</Path>
+						<Ellipse Width="50" Height="50" Fill="Green">
+							<Ellipse.Triggers>
+								<EventTrigger RoutedEvent="Window.Loaded">
+									<BeginStoryboard>
+										<Storyboard RepeatBehavior="Forever">
+											<DoubleAnimationUsingPath Source="X" Storyboard.TargetProperty="(Canvas.Left)" PathGeometry="{StaticResource MyGeometry}"/>
+											<DoubleAnimationUsingPath Source="Y" Storyboard.TargetProperty="(Canvas.Top)" PathGeometry="{StaticResource MyGeometry}"/>
+										</Storyboard>
+									</BeginStoryboard>
+								</EventTrigger>
+							</Ellipse.Triggers>
+						</Ellipse>
+					</Canvas>
 				</StackPanel>
 
 				<StackPanel x:Name="panelConfiguration" Tag="Configuration" Visibility="Collapsed">
-					<TextBlock x:Name="panelConfigurationTextBlock1" FontSize="8" Margin="0, 0, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="{StaticResource colorBrush1}" Text="Configuration" />
+					<TextBlock x:Name="panelConfigurationTextBlock" FontSize="8" Margin="0, 0, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="{StaticResource colorBrush1}" Text="Configuration" />
 				</StackPanel>
 
 			</StackPanel>

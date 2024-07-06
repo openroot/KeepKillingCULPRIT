@@ -261,7 +261,7 @@ namespace KeepKillingCULPRIT
 					switch (this.panelCurrent.Tag.ToString())
 					{
 						case "Word POC":
-							panelWordpocTextBox1.Focus();
+							panelWordpocTextBox.Focus();
 							break;
 					}
 				}
@@ -331,7 +331,9 @@ namespace KeepKillingCULPRIT
 
 		private void panelBarSizeChanged(object sender, SizeChangedEventArgs e)
 		{
-			Console.WriteLine("Width: " + e.NewSize.Width + "; Height: " + e.NewSize.Height);
+			//Console.WriteLine("Width: " + e.NewSize.Width + "; Height: " + e.NewSize.Height);
+			panelAviatorCanvas.Width = e.NewSize.Width;
+			panelAviatorCanvas.Height = e.NewSize.Height;
 		}
 
 		#region panelKiller
@@ -512,7 +514,7 @@ namespace KeepKillingCULPRIT
 
 		#region panelWordpoc
 
-		private void panelWordpocTextBox1TextChanged(object sender, TextChangedEventArgs e)
+		private void panelWordpocTextBoxTextChanged(object sender, TextChangedEventArgs e)
 		{
 			string wordpoc = ((TextBox)sender).Text;
 			if (wordpoc.Length > 0)
@@ -549,11 +551,11 @@ namespace KeepKillingCULPRIT
 						case 'z': case 'Z': sum += 6; break;
 					}
 				}
-				this.panelWordpocTextBlock1.Text = sum.ToString();
+				this.panelWordpocTextBlock.Text = sum.ToString();
 			}
 			else
 			{
-				this.panelWordpocTextBlock1.Text = string.Empty;
+				this.panelWordpocTextBlock.Text = string.Empty;
 			}
 		}
 
