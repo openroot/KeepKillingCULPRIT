@@ -329,6 +329,11 @@ namespace KeepKillingCULPRIT
 
 		#region panelBar
 
+		private void panelBarSizeChanged(object sender, SizeChangedEventArgs e)
+		{
+			Console.WriteLine("Width: " + e.NewSize.Width + "; Height: " + e.NewSize.Height);
+		}
+
 		#region panelKiller
 
 		private void actionKillerButtonKillManualClick(object sender, RoutedEventArgs e)
@@ -560,7 +565,7 @@ namespace KeepKillingCULPRIT
 
 		#endregion
 
-		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+		private void windowClosing(object sender, System.ComponentModel.CancelEventArgs e)
 		{
 			Resume resume = new Resume();
 			resume.windowHeight = this.Height;
