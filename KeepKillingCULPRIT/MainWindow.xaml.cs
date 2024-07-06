@@ -258,6 +258,12 @@ namespace KeepKillingCULPRIT
 				{
 					this.panelCurrent = panel;
 					this.panelCurrent.Visibility = Visibility.Visible;
+					switch (this.panelCurrent.Tag.ToString())
+					{
+						case "Word POC":
+							panelWordpocTextBox1.Focus();
+							break;
+					}
 				}
 			}
 			foreach (StackPanel action in this.actions)

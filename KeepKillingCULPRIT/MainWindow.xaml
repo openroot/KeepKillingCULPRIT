@@ -69,7 +69,7 @@
 					<TextBlock FontSize="11" Margin="0, 0, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="{StaticResource colorBrush1}" Text='Rolling "petrol" "rowing" pending reciprocation: Take East Connect' />
 				</StackPanel>
 
-				<StackPanel x:Name="panelTimer" Tag="Timer" Visibility="Visible">
+				<StackPanel x:Name="panelTimer" Tag="Timer" Visibility="Collapsed">
 					<TextBlock x:Name="panelTimerTextBlockTimeCountCurrent" FontSize="100" Margin="0, 0, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="{StaticResource colorBrush1}" Text="" />
 					<TextBlock x:Name="panelTimerTextBlockSessionCountCurrent" FontSize="33" Margin="0, 0, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="{StaticResource colorBrush1}" Text="" />
 				</StackPanel>
@@ -83,6 +83,10 @@
 				<StackPanel x:Name="panelWordpoc" Tag="Word POC" Visibility="Collapsed">
 					<TextBlock x:Name="panelWordpocTextBlock1" FontSize="17" Margin="0, 0, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="{StaticResource colorBrush1}" Text="" />
 					<TextBox x:Name="panelWordpocTextBox1" FontSize="9" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="{StaticResource colorBrush1}" Text="" TextChanged="panelWordpocTextBox1TextChanged" />
+				</StackPanel>
+
+				<StackPanel x:Name="panelAviator" Tag="Aviator" Visibility="Visible">
+					<TextBlock x:Name="panelAviatorTextBlock1" FontSize="100" Margin="0, 0, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="{StaticResource colorBrush1}" Text="Aviator" />
 				</StackPanel>
 
 				<StackPanel x:Name="panelConfiguration" Tag="Configuration" Visibility="Collapsed">
@@ -100,7 +104,7 @@
 					<ToggleButton x:Name="actionKillerToggleButtonKillAutomatic" Height="22" Margin="4, 0, 0, 0" Foreground="{StaticResource colorBrush0}" Background="{StaticResource colorBrush1}" Content="Automatic" Checked="actionKillerToggleButtonKillAutomaticChecked" Unchecked="actionKillerToggleButtonKillAutomaticUnchecked" />
 				</StackPanel>
 
-				<StackPanel x:Name="actionTimer" Tag="Timer" Orientation="Horizontal" HorizontalAlignment="Stretch" Visibility="Visible">
+				<StackPanel x:Name="actionTimer" Tag="Timer" Orientation="Horizontal" HorizontalAlignment="Stretch" Visibility="Collapsed">
 					<ToggleButton x:Name="actionTimerToggleButtonTimeAutomatic" Height="22" Margin="4, 0, 0, 0" Foreground="{StaticResource colorBrush0}" Background="{StaticResource colorBrush1}" Content="Automatic" Checked="actionTimerToggleButtonTimeAutomaticChecked" Unchecked="actionTimerToggleButtonTimeAutomaticUnchecked" />
 				</StackPanel>
 
