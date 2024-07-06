@@ -50,6 +50,7 @@ namespace KeepKillingCULPRIT
 		private DispatcherTimer timerKillerKillAutomatic { get; set; }
 		private DispatcherTimer timerTimerTimeAutomatic { get; set; }
 		private DispatcherTimer timerWordforestRefreshAutomatic { get; set; }
+		private Aviator aviator { get; set; }
 
 		#endregion
 
@@ -59,6 +60,7 @@ namespace KeepKillingCULPRIT
 
 			// Construct values
 			this.appStartedAt = DateTime.Now;
+			this.aviator = new Aviator(panelAviatorCanvas);
 		}
 
 		protected override void OnSourceInitialized(EventArgs e)
@@ -135,7 +137,6 @@ namespace KeepKillingCULPRIT
 
 		private void originCovers()
 		{
-			this.hostRestclient = (HostRestclient)new Distributor().getTribute(Tribute.HostRestclient);
 			this.panels = new List<StackPanel>();
 			foreach (StackPanel panel in this.panelSet.Children)
 			{
@@ -147,12 +148,13 @@ namespace KeepKillingCULPRIT
 			{
 				this.actions.Add(action);
 			}
-
 			this.bottomBarComboBoxPanelSwitcher.SelectedIndex = 0;
+
 			this.killerKillCountCurrent = 0;
-			this.timerTimeCountCurrent = 0;
 			this.panelKillerTextBlockKillCountCurrent.Text = this.killerKillCountCurrent.ToString();
 			this.topBarTextBlockKillCountCurrent.Text = this.panelKillerTextBlockKillCountCurrent.Text;
+			this.timerTimeCountCurrent = 0;
+			this.hostRestclient = (HostRestclient)new Distributor().getTribute(Tribute.HostRestclient);
 		}
 
 		private bool bypassCovers()
@@ -562,11 +564,7 @@ namespace KeepKillingCULPRIT
 
 		private void windowSizeChanged(object sender, SizeChangedEventArgs e)
 		{
-			Canvas canvasFrame = (Canvas)panelAviator.Children[0];
-			canvasFrame.Width = e.NewSize.Width;
-			canvasFrame.Height = e.NewSize.Height;
-			panelAviatorCanvas.Width = canvasFrame.Width - (panelAviatorCanvas.Margin.Left * 2);
-			panelAviatorCanvas.Height = canvasFrame.Height - (panelAviatorCanvas.Margin.Top * 2);
+			this.aviator.resetCanvasSize(e.NewSize.Width, e.NewSize.Height);
 		}
 
 		private void windowClosing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -620,6 +618,25 @@ namespace KeepKillingCULPRIT
 
 				Properties.Settings.Default.Save();
 			}
+		}
+	}
+
+	public class Aviator
+	{
+		private Canvas panelAviatorCanvas { get; set; }
+
+		public Aviator(Canvas panelAviatorCanvas)
+		{
+			this.panelAviatorCanvas = panelAviatorCanvas;
+		}
+
+		public void resetCanvasSize(double width, double height)
+		{
+			Canvas canvasFrame = (Canvas)panelAviatorCanvas.Parent;
+			canvasFrame.Width = width;
+			canvasFrame.Height = height;
+			panelAviatorCanvas.Width = canvasFrame.Width - (panelAviatorCanvas.Margin.Left * 2);
+			panelAviatorCanvas.Height = canvasFrame.Height - (panelAviatorCanvas.Margin.Top * 2);
 		}
 	}
 }
