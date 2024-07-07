@@ -666,18 +666,20 @@ namespace KeepKillingCULPRIT
 	public class Pixel
 	{
 		private double defaultDimension { get; set; }
+		private SolidColorBrush defaultColor { get; set; }
 		private Rectangle pixel { get; set; }
 
-		public Pixel(double horizontal = 0, double vertical = 0, double? dimension = null)
+		public Pixel(double horizontal = 0, double vertical = 0, SolidColorBrush color = null, double? dimension = null)
 		{
 			this.defaultDimension = 20;
+			this.defaultColor = new SolidColorBrush(Colors.DarkRed);
 
 			Rectangle rectangle = new Rectangle();
 			rectangle.Width = dimension ?? defaultDimension;
 			rectangle.Height = dimension ?? defaultDimension;
 			Canvas.SetLeft(rectangle, horizontal);
 			Canvas.SetTop(rectangle, vertical);
-			rectangle.Fill = new SolidColorBrush(Colors.Black);
+			rectangle.Fill = color ?? defaultColor;
 			this.pixel = rectangle;
 		}
 
