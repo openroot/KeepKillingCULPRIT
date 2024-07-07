@@ -671,6 +671,7 @@ namespace KeepKillingCULPRIT
 		public Pixel(double horizontal = 0, double vertical = 0, double? dimension = null)
 		{
 			this.defaultDimension = 20;
+
 			Rectangle rectangle = new Rectangle();
 			rectangle.Width = dimension ?? defaultDimension;
 			rectangle.Height = dimension ?? defaultDimension;
