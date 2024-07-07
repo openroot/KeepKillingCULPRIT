@@ -659,10 +659,7 @@ namespace KeepKillingCULPRIT
 
 		private void test()
 		{
-			Pixel pixel = new Pixel();
-			int positionIndex = this.panelAviatorCanvas.Children.Add(pixel.get());
-			Canvas.SetLeft(pixel.get(), 10);
-			Canvas.SetTop(pixel.get(), 10);
+			this.panelAviatorCanvas.Children.Add(new Pixel(20, 20).get());
 		}
 	}
 
@@ -671,12 +668,14 @@ namespace KeepKillingCULPRIT
 		private double defaultDimension { get; set; }
 		private Rectangle pixel { get; set; }
 
-		public Pixel(short horizontal = 0, short vertical = 0, double? dimension = null)
+		public Pixel(double horizontal = 0, double vertical = 0, double? dimension = null)
 		{
 			this.defaultDimension = 20;
 			Rectangle rectangle = new Rectangle();
 			rectangle.Width = dimension ?? defaultDimension;
 			rectangle.Height = dimension ?? defaultDimension;
+			Canvas.SetLeft(rectangle, horizontal);
+			Canvas.SetTop(rectangle, vertical);
 			rectangle.Fill = new SolidColorBrush(Colors.Black);
 			this.pixel = rectangle;
 		}
