@@ -659,7 +659,10 @@ namespace KeepKillingCULPRIT
 
 		private void test()
 		{
-			this.panelAviatorCanvas.Children.Add(new Pixel().get());
+			Pixel pixel = new Pixel();
+			int positionIndex = this.panelAviatorCanvas.Children.Add(pixel.get());
+			Canvas.SetLeft(pixel.get(), 10);
+			Canvas.SetTop(pixel.get(), 10);
 		}
 	}
 
