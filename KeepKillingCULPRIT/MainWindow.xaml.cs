@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Windows.Shapes;
 using System.Windows.Threading;
 
 using KeepKillingCULPRIT.doctrine.job.stacker;
@@ -642,6 +644,8 @@ namespace KeepKillingCULPRIT
 		public Aviator(Canvas panelAviatorCanvas)
 		{
 			this.panelAviatorCanvas = panelAviatorCanvas;
+
+			this.test();
 		}
 
 		public void resetCanvasSize(double width, double height)
@@ -651,6 +655,32 @@ namespace KeepKillingCULPRIT
 			canvasFrame.Height = height;
 			panelAviatorCanvas.Width = canvasFrame.Width - (panelAviatorCanvas.Margin.Left * 2);
 			panelAviatorCanvas.Height = canvasFrame.Height - (panelAviatorCanvas.Margin.Top * 2);
+		}
+
+		private void test()
+		{
+			this.panelAviatorCanvas.Children.Add(new Pixel().get());
+		}
+	}
+
+	public class Pixel
+	{
+		private double defaultDimension { get; set; }
+		private Rectangle pixel { get; set; }
+
+		public Pixel(short horizontal = 0, short vertical = 0, double? dimension = null)
+		{
+			this.defaultDimension = 20;
+			Rectangle rectangle = new Rectangle();
+			rectangle.Width = dimension ?? defaultDimension;
+			rectangle.Height = dimension ?? defaultDimension;
+			rectangle.Fill = new SolidColorBrush(Colors.Black);
+			this.pixel = rectangle;
+		}
+
+		public Rectangle get()
+		{
+			return this.pixel;
 		}
 	}
 

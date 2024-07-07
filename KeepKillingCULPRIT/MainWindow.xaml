@@ -88,9 +88,7 @@
 
 				<StackPanel x:Name="panelAviator" Tag="Aviator" Visibility="Collapsed">
 					<Canvas Background="{StaticResource colorBrush1}">
-						<Canvas x:Name="panelAviatorCanvas" Margin="3" Background="#FFFFFF">
-							<Rectangle Width="10" Height="10" Fill="Black"/>
-						</Canvas>
+						<Canvas x:Name="panelAviatorCanvas" Margin="3" Background="#FFFFFF" />
 					</Canvas>
 				</StackPanel>
 
