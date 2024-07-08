@@ -335,6 +335,16 @@ namespace KeepKillingCULPRIT
 			return null;
 		}
 
+		private void bottomBarButtonSlidePanelLeftClick(object sender, RoutedEventArgs e)
+		{
+			this.slidePanelToLeft();
+		}
+
+		private void bottomBarButtonSlidePanelRightClick(object sender, RoutedEventArgs e)
+		{
+			this.slidePanelToRight();
+		}
+
 		#endregion
 
 		#region panelBar

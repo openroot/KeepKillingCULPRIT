@@ -122,6 +122,8 @@
 		<Canvas>
 			<StackPanel x:Name="bottomBar" Margin="4, 0, 4, 0" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Canvas.Bottom="4">
 				<ComboBox x:Name="bottomBarComboBoxPanelSwitcher" Height="26" Width="100" Margin="0, 0, 0 ,0" Foreground="{StaticResource colorBrush1}" SelectionChanged="bottomBarComboBoxPanelSwitcherSelectionChanged"></ComboBox>
+				<Button x:Name="bottomBarButtonSlidePanelLeft" Height="26" Width="66" Margin="4, 0, 0, 0" Foreground="{StaticResource colorBrush1}" Content="Slide Left" Click="bottomBarButtonSlidePanelLeftClick" />
+				<Button x:Name="bottomBarButtonSlidePanelRight" Height="26" Width="66" Margin="4, 0, 0, 0" Foreground="{StaticResource colorBrush1}" Content="Slide Right" Click="bottomBarButtonSlidePanelRightClick" />
 			</StackPanel>
 		</Canvas>
 	</Grid>
