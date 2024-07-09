@@ -675,22 +675,31 @@ namespace KeepKillingCULPRIT
 
 	public class Pixel
 	{
-		private double defaultDimension { get; set; }
-		private SolidColorBrush defaultColor { get; set; }
+		private double horizontal { get; set; }
+		private double vertical { get; set; }
+		private SolidColorBrush color { get; set; }
+		private double dimension { get; set; }
 		private Rectangle pixel { get; set; }
 
 		public Pixel(double horizontal = 0, double vertical = 0, SolidColorBrush color = null, double? dimension = null)
 		{
-			this.defaultDimension = 20;
-			this.defaultColor = new SolidColorBrush(Colors.DarkRed);
+			this.horizontal = horizontal;
+			this.vertical = vertical;
+			this.color = color ?? new SolidColorBrush(Colors.Black);
+			this.dimension = dimension ?? 5;
 
+			this.pixel = this.create();
+		}
+
+		private Rectangle create()
+		{
 			Rectangle rectangle = new Rectangle();
-			rectangle.Width = dimension ?? defaultDimension;
-			rectangle.Height = dimension ?? defaultDimension;
-			Canvas.SetLeft(rectangle, horizontal);
-			Canvas.SetTop(rectangle, vertical);
-			rectangle.Fill = color ?? defaultColor;
-			this.pixel = rectangle;
+			rectangle.Width = this.dimension;
+			rectangle.Height = this.dimension;
+			Canvas.SetLeft(rectangle, this.horizontal);
+			Canvas.SetTop(rectangle, this.vertical);
+			rectangle.Fill = this.color;
+			return rectangle;
 		}
 
 		public Rectangle get()
