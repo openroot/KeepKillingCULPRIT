@@ -584,7 +584,7 @@ namespace KeepKillingCULPRIT
 
 		private void windowSizeChanged(object sender, SizeChangedEventArgs e)
 		{
-			this.aviator.resetCanvasSize(e.NewSize.Width, e.NewSize.Height);
+			this.aviator.resizeCanvas(e.NewSize.Width, e.NewSize.Height);
 		}
 
 		private void windowClosing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -660,10 +660,10 @@ namespace KeepKillingCULPRIT
 		public Aviator(Canvas panelAviatorCanvas)
 		{
 			this.canvas = panelAviatorCanvas;
-			this.test();
+			this.sampling();
 		}
 
-		public void resetCanvasSize(double width, double height)
+		public void resizeCanvas(double width, double height)
 		{
 			Canvas canvasFrame = (Canvas)this.canvas.Parent;
 			canvasFrame.Width = width;
@@ -672,10 +672,15 @@ namespace KeepKillingCULPRIT
 			this.canvas.Height = canvasFrame.Height - (this.canvas.Margin.Top * 2);
 		}
 
-		private void test()
+		private void sampling()
 		{
 			this.canvas.Children.Add(new Pixel(20, 20).get());
 		}
+	}
+
+	public class Sticker
+	{
+
 	}
 
 	public class Pixel
