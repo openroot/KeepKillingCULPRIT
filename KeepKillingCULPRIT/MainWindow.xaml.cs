@@ -687,7 +687,6 @@ namespace KeepKillingCULPRIT
 			this.vertical = vertical;
 			this.color = color ?? new SolidColorBrush(Colors.Black);
 			this.dimension = dimension ?? 5;
-
 			this.pixel = this.create();
 		}
 
