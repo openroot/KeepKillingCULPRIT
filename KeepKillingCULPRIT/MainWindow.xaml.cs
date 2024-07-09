@@ -674,7 +674,7 @@ namespace KeepKillingCULPRIT
 
 		private void sampling()
 		{
-			this.canvas.Children.Add(new Pixel(20, 20).get());
+			this.canvas.Children.Add(new Port(20, 20).get());
 		}
 	}
 
@@ -683,37 +683,37 @@ namespace KeepKillingCULPRIT
 
 	}
 
-	public class Pixel
+	public class Port
 	{
+		private Rectangle square { get; set; }
 		private double horizontal { get; set; }
 		private double vertical { get; set; }
 		private SolidColorBrush color { get; set; }
 		private double dimension { get; set; }
-		private Rectangle pixel { get; set; }
 
-		public Pixel(double horizontal = 0, double vertical = 0, SolidColorBrush color = null, double? dimension = null)
+		public Port(double horizontal = 0, double vertical = 0, SolidColorBrush color = null, double? dimension = null)
 		{
 			this.horizontal = horizontal;
 			this.vertical = vertical;
 			this.color = color ?? new SolidColorBrush(Colors.Black);
 			this.dimension = dimension ?? 5;
-			this.pixel = this.create();
+			this.square = this.create();
 		}
 
 		private Rectangle create()
 		{
-			Rectangle rectangle = new Rectangle();
-			rectangle.Width = this.dimension;
-			rectangle.Height = this.dimension;
-			Canvas.SetLeft(rectangle, this.horizontal);
-			Canvas.SetTop(rectangle, this.vertical);
-			rectangle.Fill = this.color;
-			return rectangle;
+			Rectangle square = new Rectangle();
+			square.Width = this.dimension;
+			square.Height = this.dimension;
+			Canvas.SetLeft(square, this.horizontal);
+			Canvas.SetTop(square, this.vertical);
+			square.Fill = this.color;
+			return square;
 		}
 
 		public Rectangle get()
 		{
-			return this.pixel;
+			return this.square;
 		}
 	}
 
