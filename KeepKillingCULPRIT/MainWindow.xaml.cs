@@ -649,27 +649,26 @@ namespace KeepKillingCULPRIT
 
 	public class Aviator
 	{
-		private Canvas panelAviatorCanvas { get; set; }
+		private Canvas canvas { get; set; }
 
 		public Aviator(Canvas panelAviatorCanvas)
 		{
-			this.panelAviatorCanvas = panelAviatorCanvas;
-
+			this.canvas = panelAviatorCanvas;
 			this.test();
 		}
 
 		public void resetCanvasSize(double width, double height)
 		{
-			Canvas canvasFrame = (Canvas)panelAviatorCanvas.Parent;
+			Canvas canvasFrame = (Canvas)this.canvas.Parent;
 			canvasFrame.Width = width;
 			canvasFrame.Height = height;
-			panelAviatorCanvas.Width = canvasFrame.Width - (panelAviatorCanvas.Margin.Left * 2);
-			panelAviatorCanvas.Height = canvasFrame.Height - (panelAviatorCanvas.Margin.Top * 2);
+			this.canvas.Width = canvasFrame.Width - (this.canvas.Margin.Left * 2);
+			this.canvas.Height = canvasFrame.Height - (this.canvas.Margin.Top * 2);
 		}
 
 		private void test()
 		{
-			this.panelAviatorCanvas.Children.Add(new Pixel(20, 20).get());
+			this.canvas.Children.Add(new Pixel(20, 20).get());
 		}
 	}
 
