@@ -610,6 +610,8 @@ namespace KeepKillingCULPRIT
 
 	#region helper class
 
+	#region window
+
 	public class Resume
 	{
 		public double windowTop { get; set; }
@@ -646,6 +648,10 @@ namespace KeepKillingCULPRIT
 			}
 		}
 	}
+
+	#endregion
+
+	#region Aviator
 
 	public class Aviator
 	{
@@ -705,6 +711,8 @@ namespace KeepKillingCULPRIT
 			return this.pixel;
 		}
 	}
+
+	#endregion
 
 	#endregion
 }
