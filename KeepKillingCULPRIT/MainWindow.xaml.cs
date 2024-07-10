@@ -685,7 +685,7 @@ namespace KeepKillingCULPRIT
 		protected Dictionary<int, double> scale { get; set; }
 		protected Dictionary<int, double> horizontalDeviation { get; set; }
 		protected Dictionary<int, double> verticalDeviation { get; set; }
-		protected Dictionary<int, int> order { get; set; }
+		protected Dictionary<int, DateTime> order { get; set; }
 
 		public Sticker()
 		{
@@ -693,13 +693,17 @@ namespace KeepKillingCULPRIT
 			this.scale = new Dictionary<int, double>();
 			this.horizontalDeviation = new Dictionary<int, double>();
 			this.verticalDeviation = new Dictionary<int, double>();
-			this.order = new Dictionary<int, int>();
+			this.order = new Dictionary<int, DateTime>();
 		}
 
-		protected int createFold()
+		protected int createFold(double? scale = 0, double? horizontalDeviation = 0, double? verticalDeviation = 0)
 		{
 			int foldId = this.fold.Count + 1;
 			this.fold.Add(foldId, new List<int>());
+			this.scale.Add(foldId, scale ?? 0);
+			this.horizontalDeviation.Add(foldId, horizontalDeviation ?? 0);
+			this.verticalDeviation.Add(foldId, verticalDeviation ?? 0);
+			this.order.Add(foldId, DateTime.UtcNow);
 			return foldId;
 		}
 	}
