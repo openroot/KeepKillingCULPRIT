@@ -675,12 +675,26 @@ namespace KeepKillingCULPRIT
 		private void sampling()
 		{
 			this.canvas.Children.Add(new Port(20, 20).get());
+			Sticker sticker = new Sticker();
 		}
 	}
 
 	public class Sticker
 	{
+		private Dictionary<int, List<int>> fold { get; set; }
+		private Dictionary<int, double> scale { get; set; }
+		private Dictionary<int, double> horizontalDeviation { get; set; }
+		private Dictionary<int, double> verticalDeviation { get; set; }
+		private Dictionary<int, int> order { get; set; }
 
+		public Sticker()
+		{
+			this.fold = new Dictionary<int, List<int>>();
+			this.scale = new Dictionary<int, double>();
+			this.horizontalDeviation = new Dictionary<int, double>();
+			this.verticalDeviation = new Dictionary<int, double>();
+			this.order = new Dictionary<int, int>();
+		}
 	}
 
 	public class Port
