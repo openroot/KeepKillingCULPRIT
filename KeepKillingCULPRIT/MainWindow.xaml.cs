@@ -653,14 +653,14 @@ namespace KeepKillingCULPRIT
 
 	#region Aviator
 
-	public class Aviator
+	public class Aviator : Sticker
 	{
 		private Canvas canvas { get; set; }
 
 		public Aviator(Canvas panelAviatorCanvas)
 		{
 			this.canvas = panelAviatorCanvas;
-			this.sampling();
+			this.runSample();
 		}
 
 		public void resizeCanvas(double width, double height)
@@ -672,20 +672,20 @@ namespace KeepKillingCULPRIT
 			this.canvas.Height = canvasFrame.Height - (this.canvas.Margin.Top * 2);
 		}
 
-		private void sampling()
+		private void runSample()
 		{
-			this.canvas.Children.Add(new Port(20, 20).get());
-			Sticker sticker = new Sticker();
+			this.canvas.Children.Add(new Port(20, 20).getSquare());
+			this.createFold();
 		}
 	}
 
 	public class Sticker
 	{
-		private Dictionary<int, List<int>> fold { get; set; }
-		private Dictionary<int, double> scale { get; set; }
-		private Dictionary<int, double> horizontalDeviation { get; set; }
-		private Dictionary<int, double> verticalDeviation { get; set; }
-		private Dictionary<int, int> order { get; set; }
+		protected Dictionary<int, List<int>> fold { get; set; }
+		protected Dictionary<int, double> scale { get; set; }
+		protected Dictionary<int, double> horizontalDeviation { get; set; }
+		protected Dictionary<int, double> verticalDeviation { get; set; }
+		protected Dictionary<int, int> order { get; set; }
 
 		public Sticker()
 		{
@@ -694,6 +694,13 @@ namespace KeepKillingCULPRIT
 			this.horizontalDeviation = new Dictionary<int, double>();
 			this.verticalDeviation = new Dictionary<int, double>();
 			this.order = new Dictionary<int, int>();
+		}
+
+		protected int createFold()
+		{
+			int foldId = this.fold.Count + 1;
+			this.fold.Add(foldId, new List<int>());
+			return foldId;
 		}
 	}
 
@@ -711,10 +718,10 @@ namespace KeepKillingCULPRIT
 			this.vertical = vertical;
 			this.color = color ?? new SolidColorBrush(Colors.Black);
 			this.dimension = dimension ?? 5;
-			this.square = this.create();
+			this.square = this.createSquare();
 		}
 
-		private Rectangle create()
+		private Rectangle createSquare()
 		{
 			Rectangle square = new Rectangle();
 			square.Width = this.dimension;
@@ -725,7 +732,7 @@ namespace KeepKillingCULPRIT
 			return square;
 		}
 
-		public Rectangle get()
+		public Rectangle getSquare()
 		{
 			return this.square;
 		}
