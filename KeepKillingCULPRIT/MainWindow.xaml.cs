@@ -658,10 +658,12 @@ namespace KeepKillingCULPRIT
 	public class Aviator : Sticker
 	{
 		private Canvas canvas { get; set; }
+		private int depth {  get; set; }
 
-		public Aviator(Canvas canvas)
+		public Aviator(Canvas canvas, int? depth = null)
 		{
 			this.canvas = canvas;
+			this.depth = depth ?? 15;
 			this.runSample();
 		}
 
@@ -671,7 +673,7 @@ namespace KeepKillingCULPRIT
 			int fold2 = this.createFold(0.5);
 			int fold3 = this.createFold(null, 50, 50);
 
-			this.canvas.Children.Add(new Port(20, 20).getSquare());
+			this.canvas.Children.Add(new Port(25, 25, this.depth).getSquare());
 		}
 
 		private void reshapeFold()
@@ -709,7 +711,7 @@ namespace KeepKillingCULPRIT
 			this.order = new Dictionary<int, DateTime>();
 		}
 
-		protected int createFold(double? scale = 0, double? horizontalDeviation = 0, double? verticalDeviation = 0)
+		protected int createFold(double? scale = null, double? horizontalDeviation = null, double? verticalDeviation = null)
 		{
 			int foldId = this.fold.Count + 1;
 			this.fold.Add(foldId, new List<int>());
@@ -726,25 +728,25 @@ namespace KeepKillingCULPRIT
 		private Rectangle square { get; set; }
 		private double horizontal { get; set; }
 		private double vertical { get; set; }
-		private SolidColorBrush color { get; set; }
 		private double dimension { get; set; }
+		private SolidColorBrush color { get; set; }
 
-		public Port(double horizontal = 0, double vertical = 0, SolidColorBrush color = null, double? dimension = null)
+		public Port(double horizontal, double vertical, double dimension, SolidColorBrush color = null)
 		{
 			this.horizontal = horizontal;
 			this.vertical = vertical;
+			this.dimension = dimension;
 			this.color = color ?? new SolidColorBrush(Colors.Black);
-			this.dimension = dimension ?? 5;
 			this.square = this.createSquare();
 		}
 
 		private Rectangle createSquare()
 		{
 			Rectangle square = new Rectangle();
-			square.Width = this.dimension;
-			square.Height = this.dimension;
 			Canvas.SetLeft(square, this.horizontal);
 			Canvas.SetTop(square, this.vertical);
+			square.Width = this.dimension;
+			square.Height = this.dimension;
 			square.Fill = this.color;
 			return square;
 		}
