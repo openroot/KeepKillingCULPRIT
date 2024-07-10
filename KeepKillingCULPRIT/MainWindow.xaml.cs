@@ -657,9 +657,9 @@ namespace KeepKillingCULPRIT
 	{
 		private Canvas canvas { get; set; }
 
-		public Aviator(Canvas panelAviatorCanvas)
+		public Aviator(Canvas canvas)
 		{
-			this.canvas = panelAviatorCanvas;
+			this.canvas = canvas;
 			this.runSample();
 		}
 
