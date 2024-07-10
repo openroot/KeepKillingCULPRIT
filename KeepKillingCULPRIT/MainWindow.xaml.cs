@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -665,10 +667,19 @@ namespace KeepKillingCULPRIT
 
 		private void runSample()
 		{
-			this.createFold();
-			this.createFold(0.5);
-			this.createFold(null, 50, 50);
+			int fold1 = this.createFold();
+			int fold2 = this.createFold(0.5);
+			int fold3 = this.createFold(null, 50, 50);
+
 			this.canvas.Children.Add(new Port(20, 20).getSquare());
+		}
+
+		private void reshapeFold()
+		{
+			foreach (int foldId in this.fold.Keys)
+			{
+
+			}
 		}
 
 		public void resizeCanvas(double width, double height)
