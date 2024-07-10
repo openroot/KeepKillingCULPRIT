@@ -663,6 +663,12 @@ namespace KeepKillingCULPRIT
 			this.runSample();
 		}
 
+		private void runSample()
+		{
+			this.canvas.Children.Add(new Port(20, 20).getSquare());
+			this.createFold();
+		}
+
 		public void resizeCanvas(double width, double height)
 		{
 			Canvas canvasFrame = (Canvas)this.canvas.Parent;
@@ -670,12 +676,6 @@ namespace KeepKillingCULPRIT
 			canvasFrame.Height = height;
 			this.canvas.Width = canvasFrame.Width - (this.canvas.Margin.Left * 2);
 			this.canvas.Height = canvasFrame.Height - (this.canvas.Margin.Top * 2);
-		}
-
-		private void runSample()
-		{
-			this.canvas.Children.Add(new Port(20, 20).getSquare());
-			this.createFold();
 		}
 	}
 
