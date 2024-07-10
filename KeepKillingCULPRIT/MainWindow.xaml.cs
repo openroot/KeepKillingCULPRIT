@@ -665,8 +665,8 @@ namespace KeepKillingCULPRIT
 
 		private void runSample()
 		{
-			this.canvas.Children.Add(new Port(20, 20).getSquare());
 			this.createFold();
+			this.canvas.Children.Add(new Port(20, 20).getSquare());
 		}
 
 		public void resizeCanvas(double width, double height)
