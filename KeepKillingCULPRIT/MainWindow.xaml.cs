@@ -68,7 +68,6 @@ namespace KeepKillingCULPRIT
 
 			// Construct values
 			this.appStartedAt = DateTime.Now;
-			this.aviator = new Aviator(panelAviatorCanvas);
 		}
 
 		protected override void OnSourceInitialized(EventArgs e)
@@ -156,13 +155,14 @@ namespace KeepKillingCULPRIT
 			{
 				this.actions.Add(action);
 			}
-			this.bottomBarComboBoxPanelSwitcher.SelectedIndex = 0;
+			this.bottomBarComboBoxPanelSwitcher.SelectedIndex = 4;
 
 			this.killerKillCountCurrent = 0;
 			this.panelKillerTextBlockKillCountCurrent.Text = this.killerKillCountCurrent.ToString();
 			this.topBarTextBlockKillCountCurrent.Text = this.panelKillerTextBlockKillCountCurrent.Text;
 			this.timerTimeCountCurrent = 0;
 			this.hostRestclient = (HostRestclient)new Distributor().getTribute(Tribute.HostRestclient);
+			this.aviator = new Aviator(this, panelAviatorCanvas);
 		}
 
 		private bool bypassCovers()
@@ -586,7 +586,10 @@ namespace KeepKillingCULPRIT
 
 		private void windowSizeChanged(object sender, SizeChangedEventArgs e)
 		{
-			this.aviator.resizeCanvas(e.NewSize.Width, e.NewSize.Height);
+			if (this.aviator != null)
+			{
+				this.aviator.resizeCanvas(e.NewSize.Width, e.NewSize.Height);
+			}
 		}
 
 		private void windowClosing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -657,13 +660,17 @@ namespace KeepKillingCULPRIT
 
 	public class Aviator : Sticker
 	{
+		private Window window { get; set; }
 		private Canvas canvas { get; set; }
 		private int depth {  get; set; }
 
-		public Aviator(Canvas canvas, int? depth = null)
+		public Aviator(Window window, Canvas canvas, int? depth = null)
 		{
+			this.window = window;
 			this.canvas = canvas;
 			this.depth = depth ?? 15;
+			this.resizeCanvas();
+
 			this.runSample();
 		}
 
@@ -672,25 +679,23 @@ namespace KeepKillingCULPRIT
 			int fold1 = this.createFold();
 			int fold2 = this.createFold(0.5);
 			int fold3 = this.createFold(null, 50, 50);
-
 			this.canvas.Children.Add(new Port(25, 25, this.depth).getSquare());
 		}
 
 		private void reshapeFold()
 		{
-			foreach (int foldId in this.fold.Keys)
-			{
-
-			}
+			Console.WriteLine("Width: " + this.canvas.Width + " | " + "Height: " + this.canvas.Height);
+			foreach (int foldId in this.fold.Keys) { }
 		}
 
-		public void resizeCanvas(double width, double height)
+		public void resizeCanvas(double? width = null, double? height = null)
 		{
 			Canvas canvasFrame = (Canvas)this.canvas.Parent;
-			canvasFrame.Width = width;
-			canvasFrame.Height = height;
+			canvasFrame.Width = width ?? this.window.Width;
+			canvasFrame.Height = height ?? this.window.Height;
 			this.canvas.Width = canvasFrame.Width - (this.canvas.Margin.Left * 2);
 			this.canvas.Height = canvasFrame.Height - (this.canvas.Margin.Top * 2);
+			this.reshapeFold();
 		}
 	}
 
