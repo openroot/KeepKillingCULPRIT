@@ -673,9 +673,9 @@ namespace KeepKillingCULPRIT
 		{
 			string content = "1.1,1.2,25.25";
 
-			int fold1 = this.createFold(2, null, null);
-			int fold2 = this.createFold(0);
-			int fold3 = this.createFold(null, 50, 50);
+			int fold1 = this.createFold();
+			int fold2 = this.createFold();
+			int fold3 = this.createFold();
 
 			int[] allowedSeparators = { '.' };
 			List<int[]> formattedContent = new List<int[]>();
@@ -715,11 +715,7 @@ namespace KeepKillingCULPRIT
 	public class Sticker
 	{
 		protected Dictionary<int, List<int[]>> fold { get; set; }
-		protected Dictionary<int, int> scale { get; set; }
-		protected Dictionary<int, double> horizontalDeviation { get; set; }
-		protected Dictionary<int, double> verticalDeviation { get; set; }
 		protected Dictionary<int, DateTime> order { get; set; }
-
 		protected Canvas layer { get; set; }
 		protected int depth { get; set; }
 		protected int length { get; set; }
@@ -730,19 +726,13 @@ namespace KeepKillingCULPRIT
 		public Sticker()
 		{
 			this.fold = new Dictionary<int, List<int[]>>();
-			this.scale = new Dictionary<int, int>();
-			this.horizontalDeviation = new Dictionary<int, double>();
-			this.verticalDeviation = new Dictionary<int, double>();
 			this.order = new Dictionary<int, DateTime>();
 		}
 
-		protected int createFold(int? scale = null, double? horizontalDeviation = null, double? verticalDeviation = null)
+		protected int createFold()
 		{
 			int foldId = this.fold.Count + 1;
 			this.fold.Add(foldId, new List<int[]>());
-			this.scale.Add(foldId, scale ?? 0);
-			this.horizontalDeviation.Add(foldId, horizontalDeviation ?? 0);
-			this.verticalDeviation.Add(foldId, verticalDeviation ?? 0);
 			this.order.Add(foldId, DateTime.UtcNow);
 			return foldId;
 		}
@@ -777,13 +767,9 @@ namespace KeepKillingCULPRIT
 			{
 				foreach(int[] vertices in this.fold[foldId])
 				{
-					//this.depth = this.scale[foldId] == 0 ? this.depth : (this.depth * this.scale[foldId]);
-					double horizontal = this.marginLeft + ((vertices[0] - 1) * this.depth) + this.horizontalDeviation[foldId];
-					double vertical = this.marginTop + ((vertices[1] - 1) * this.depth) + this.verticalDeviation[foldId];
-					double dimension = this.depth;
 					if ((vertices[0] >= 1 && vertices[0] <= this.length) && (vertices[1] >= 1 && vertices[1] <= this.breadth))
 					{
-						Port port = new Port(horizontal, vertical, dimension);
+						Port port = new Port(this.marginLeft + ((vertices[0] - 1) * this.depth), this.marginTop + ((vertices[1] - 1) * this.depth), this.depth);
 						this.layer.Children.Add(port.getSquare());
 					}
 				}
