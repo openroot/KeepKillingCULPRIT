@@ -667,18 +667,16 @@ namespace KeepKillingCULPRIT
 			this.displayStandard = displayStandard;
 			this.layer = layer;
 			this.depth = depth ?? 12;
+			this.run();
 			this.resizeLayer();
-
-			this.runSample();
 		}
 
-		private void runSample()
+		private void run()
 		{
 			int fold1 = this.createFold();
 			int fold2 = this.createFold(0.5);
 			int fold3 = this.createFold(null, 50, 50);
 
-			// 810 - 460 | 10 (at maximized, 5 inch screen)
 			this.createGraph(1, new int[2] { 1, 1 });
 			this.createGraph(1, new int[2]{ 67, 38 });
 		}
@@ -744,36 +742,19 @@ namespace KeepKillingCULPRIT
 			{
 				if (vertices != null && vertices.Length == 2)
 				{
-					if ((vertices[0] >= 1 && vertices[0] <= this.length) && (vertices[1] >= 1 && vertices[1] <= this.breadth))
+					bool isOccupied = false;
+					foreach (int[] value in this.fold[foldId])
 					{
-						bool isOccupied = false;
-						foreach (int[] value in this.fold[foldId])
+						if (value[0] == vertices[0] && value[1] == vertices[1])
 						{
-							if (value[0] == vertices[0] && value[1] == vertices[1])
-							{
-								isOccupied = true;
-								break;
-							}
-						}
-						if (!isOccupied)
-						{
-							this.fold[foldId].Add(vertices);
-						}
-						else
-						{
-							Console.WriteLine("Coordinate already occupied.");
+							isOccupied = true;
+							break;
 						}
 					}
-					else
+					if (!isOccupied)
 					{
-						Console.WriteLine("Coordinate at out of range.");
-						Console.WriteLine("Available range: " + this.length + " - " + this.breadth);
-						Console.WriteLine("Provided range: " + vertices[0] + " - " + vertices[1]);
+						this.fold[foldId].Add(vertices);
 					}
-				}
-				else
-				{
-					Console.WriteLine("Coordinate count exempted.");
 				}
 			}
 		}
@@ -785,8 +766,11 @@ namespace KeepKillingCULPRIT
 			{
 				foreach(int[] vertices in this.fold[foldId])
 				{
-					Port port = new Port(this.marginLeft + ((vertices[0] - 1) * this.depth), this.marginTop + ((vertices[1] - 1) * this.depth), this.depth);
-					this.layer.Children.Add(port.getSquare());
+					if ((vertices[0] >= 1 && vertices[0] <= this.length) && (vertices[1] >= 1 && vertices[1] <= this.breadth))
+					{
+						Port port = new Port(this.marginLeft + ((vertices[0] - 1) * this.depth), this.marginTop + ((vertices[1] - 1) * this.depth), this.depth);
+						this.layer.Children.Add(port.getSquare());
+					}
 				}
 			}
 		}
