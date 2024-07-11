@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+using System.Linq;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -588,7 +588,7 @@ namespace KeepKillingCULPRIT
 		{
 			if (this.aviator != null)
 			{
-				this.aviator.resizeCanvas(e.NewSize.Width, e.NewSize.Height);
+				this.aviator.resizeLayer(e.NewSize.Width, e.NewSize.Height);
 			}
 		}
 
@@ -660,16 +660,14 @@ namespace KeepKillingCULPRIT
 
 	public class Aviator : Sticker
 	{
-		private Window window { get; set; }
-		private Canvas canvas { get; set; }
-		private int depth {  get; set; }
+		private Window displayStandard { get; set; }
 
-		public Aviator(Window window, Canvas canvas, int? depth = null)
+		public Aviator(Window displayStandard, Canvas layer, int? depth = null)
 		{
-			this.window = window;
-			this.canvas = canvas;
-			this.depth = depth ?? 15;
-			this.resizeCanvas();
+			this.displayStandard = displayStandard;
+			this.layer = layer;
+			this.depth = depth ?? 12;
+			this.resizeLayer();
 
 			this.runSample();
 		}
@@ -679,37 +677,50 @@ namespace KeepKillingCULPRIT
 			int fold1 = this.createFold();
 			int fold2 = this.createFold(0.5);
 			int fold3 = this.createFold(null, 50, 50);
-			this.canvas.Children.Add(new Port(25, 25, this.depth).getSquare());
+
+			// 810 - 460 | 10 (at maximized, 5 inch screen)
+			this.createGraph(1, new int[2] { 1, 1 });
+			this.createGraph(1, new int[2]{ 67, 38 });
 		}
 
 		private void reshapeFold()
 		{
-			Console.WriteLine("Width: " + this.canvas.Width + " | " + "Height: " + this.canvas.Height);
-			foreach (int foldId in this.fold.Keys) { }
+			this.length = int.Parse((this.layer.Width / this.depth).ToString().Split('.')[0]);
+			this.breadth = int.Parse((this.layer.Height / this.depth).ToString().Split('.')[0]);
+			this.marginLeft = (this.layer.Width - (length * this.depth)) / 2;
+			this.marginTop = (this.layer.Height - (breadth * this.depth)) / 2;
+			this.renderGraph();
 		}
 
-		public void resizeCanvas(double? width = null, double? height = null)
+		public void resizeLayer(double? width = null, double? height = null)
 		{
-			Canvas canvasFrame = (Canvas)this.canvas.Parent;
-			canvasFrame.Width = width ?? this.window.Width;
-			canvasFrame.Height = height ?? this.window.Height;
-			this.canvas.Width = canvasFrame.Width - (this.canvas.Margin.Left * 2);
-			this.canvas.Height = canvasFrame.Height - (this.canvas.Margin.Top * 2);
+			Canvas canvasFrame = (Canvas)this.layer.Parent;
+			canvasFrame.Width = width ?? this.displayStandard.Width;
+			canvasFrame.Height = height ?? this.displayStandard.Height;
+			this.layer.Width = canvasFrame.Width - (this.layer.Margin.Left * 2);
+			this.layer.Height = canvasFrame.Height - (this.layer.Margin.Top * 2);
 			this.reshapeFold();
 		}
 	}
 
 	public class Sticker
 	{
-		protected Dictionary<int, List<int>> fold { get; set; }
+		protected Dictionary<int, List<int[]>> fold { get; set; }
 		protected Dictionary<int, double> scale { get; set; }
 		protected Dictionary<int, double> horizontalDeviation { get; set; }
 		protected Dictionary<int, double> verticalDeviation { get; set; }
 		protected Dictionary<int, DateTime> order { get; set; }
 
+		protected Canvas layer { get; set; }
+		protected int depth { get; set; }
+		protected int length { get; set; }
+		protected int breadth { get; set; }
+		protected double marginLeft { get; set; }
+		protected double marginTop { get; set; }
+
 		public Sticker()
 		{
-			this.fold = new Dictionary<int, List<int>>();
+			this.fold = new Dictionary<int, List<int[]>>();
 			this.scale = new Dictionary<int, double>();
 			this.horizontalDeviation = new Dictionary<int, double>();
 			this.verticalDeviation = new Dictionary<int, double>();
@@ -719,12 +730,64 @@ namespace KeepKillingCULPRIT
 		protected int createFold(double? scale = null, double? horizontalDeviation = null, double? verticalDeviation = null)
 		{
 			int foldId = this.fold.Count + 1;
-			this.fold.Add(foldId, new List<int>());
+			this.fold.Add(foldId, new List<int[]>());
 			this.scale.Add(foldId, scale ?? 0);
 			this.horizontalDeviation.Add(foldId, horizontalDeviation ?? 0);
 			this.verticalDeviation.Add(foldId, verticalDeviation ?? 0);
 			this.order.Add(foldId, DateTime.UtcNow);
 			return foldId;
+		}
+
+		protected void createGraph(int foldId, int[] vertices)
+		{
+			if (this.fold.ContainsKey(foldId))
+			{
+				if (vertices != null && vertices.Length == 2)
+				{
+					if ((vertices[0] >= 1 && vertices[0] <= this.length) && (vertices[1] >= 1 && vertices[1] <= this.breadth))
+					{
+						bool isOccupied = false;
+						foreach (int[] value in this.fold[foldId])
+						{
+							if (value[0] == vertices[0] && value[1] == vertices[1])
+							{
+								isOccupied = true;
+								break;
+							}
+						}
+						if (!isOccupied)
+						{
+							this.fold[foldId].Add(vertices);
+						}
+						else
+						{
+							Console.WriteLine("Coordinate already occupied.");
+						}
+					}
+					else
+					{
+						Console.WriteLine("Coordinate at out of range.");
+						Console.WriteLine("Available range: " + this.length + " - " + this.breadth);
+						Console.WriteLine("Provided range: " + vertices[0] + " - " + vertices[1]);
+					}
+				}
+				else
+				{
+					Console.WriteLine("Coordinate count exempted.");
+				}
+			}
+		}
+
+		protected void renderGraph()
+		{
+			foreach (int foldId in this.fold.Keys)
+			{
+				foreach(int[] vertices in this.fold[foldId])
+				{
+					Port port = new Port(this.marginLeft + ((vertices[0] - 1) * this.depth), this.marginTop + ((vertices[1] - 1) * this.depth), this.depth);
+					this.layer.Children.Add(port.getSquare());
+				}
+			}
 		}
 	}
 
