@@ -673,8 +673,8 @@ namespace KeepKillingCULPRIT
 		{
 			string content = "1.1,1.2,25.25";
 
-			int fold1 = this.createFold();
-			int fold2 = this.createFold(0.5);
+			int fold1 = this.createFold(2, null, null);
+			int fold2 = this.createFold(0);
 			int fold3 = this.createFold(null, 50, 50);
 
 			int[] allowedSeparators = { '.' };
@@ -715,7 +715,7 @@ namespace KeepKillingCULPRIT
 	public class Sticker
 	{
 		protected Dictionary<int, List<int[]>> fold { get; set; }
-		protected Dictionary<int, double> scale { get; set; }
+		protected Dictionary<int, int> scale { get; set; }
 		protected Dictionary<int, double> horizontalDeviation { get; set; }
 		protected Dictionary<int, double> verticalDeviation { get; set; }
 		protected Dictionary<int, DateTime> order { get; set; }
@@ -730,13 +730,13 @@ namespace KeepKillingCULPRIT
 		public Sticker()
 		{
 			this.fold = new Dictionary<int, List<int[]>>();
-			this.scale = new Dictionary<int, double>();
+			this.scale = new Dictionary<int, int>();
 			this.horizontalDeviation = new Dictionary<int, double>();
 			this.verticalDeviation = new Dictionary<int, double>();
 			this.order = new Dictionary<int, DateTime>();
 		}
 
-		protected int createFold(double? scale = null, double? horizontalDeviation = null, double? verticalDeviation = null)
+		protected int createFold(int? scale = null, double? horizontalDeviation = null, double? verticalDeviation = null)
 		{
 			int foldId = this.fold.Count + 1;
 			this.fold.Add(foldId, new List<int[]>());
@@ -777,9 +777,12 @@ namespace KeepKillingCULPRIT
 			{
 				foreach(int[] vertices in this.fold[foldId])
 				{
+					//this.depth = this.scale[foldId] == 0 ? this.depth : (this.depth * this.scale[foldId]);
+					double horizontal = this.marginLeft + ((vertices[0] - 1) * this.depth) + this.horizontalDeviation[foldId];
+					double vertical = this.marginTop + ((vertices[1] - 1) * this.depth) + this.verticalDeviation[foldId];
 					if ((vertices[0] >= 1 && vertices[0] <= this.length) && (vertices[1] >= 1 && vertices[1] <= this.breadth))
 					{
-						Port port = new Port(this.marginLeft + ((vertices[0] - 1) * this.depth), this.marginTop + ((vertices[1] - 1) * this.depth), this.depth);
+						Port port = new Port(horizontal, vertical, this.depth);
 						this.layer.Children.Add(port.getSquare());
 					}
 				}
