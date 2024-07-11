@@ -666,19 +666,32 @@ namespace KeepKillingCULPRIT
 		{
 			this.displayStandard = displayStandard;
 			this.layer = layer;
-			this.depth = depth ?? 12;
+			this.depth = depth ?? 10;
 			this.run();
 			this.resizeLayer();
 		}
 
 		private void run()
 		{
+			string content = "1.1,1.2,25.25";
+
 			int fold1 = this.createFold();
 			int fold2 = this.createFold(0.5);
 			int fold3 = this.createFold(null, 50, 50);
 
-			this.createGraph(1, new int[2] { 1, 1 });
-			this.createGraph(1, new int[2]{ 67, 38 });
+			int[] allowedSeparators = { '.' };
+			List<int[]> formattedContent = new List<int[]>();
+			foreach (string vertices in content.Split(','))
+			{
+				// TODO: Verify valid separators
+				string[] vertex = vertices.Trim().Split('.');
+				formattedContent.Add(new int[2] { int.Parse(vertex[0]), int.Parse(vertex[1]) });
+			}
+
+			foreach (int[] vertices in formattedContent)
+			{
+				this.createGraph(fold1, vertices);
+			}
 		}
 
 		private void reshapeFold()
