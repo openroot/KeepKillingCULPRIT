@@ -780,6 +780,7 @@ namespace KeepKillingCULPRIT
 
 		protected void renderGraph()
 		{
+			this.layer.Children.Clear();
 			foreach (int foldId in this.fold.Keys)
 			{
 				foreach(int[] vertices in this.fold[foldId])
