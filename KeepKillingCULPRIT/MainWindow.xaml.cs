@@ -780,9 +780,10 @@ namespace KeepKillingCULPRIT
 					//this.depth = this.scale[foldId] == 0 ? this.depth : (this.depth * this.scale[foldId]);
 					double horizontal = this.marginLeft + ((vertices[0] - 1) * this.depth) + this.horizontalDeviation[foldId];
 					double vertical = this.marginTop + ((vertices[1] - 1) * this.depth) + this.verticalDeviation[foldId];
+					double dimension = this.depth;
 					if ((vertices[0] >= 1 && vertices[0] <= this.length) && (vertices[1] >= 1 && vertices[1] <= this.breadth))
 					{
-						Port port = new Port(horizontal, vertical, this.depth);
+						Port port = new Port(horizontal, vertical, dimension);
 						this.layer.Children.Add(port.getSquare());
 					}
 				}
