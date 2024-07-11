@@ -96,6 +96,9 @@
 				</StackPanel>
 
 				<StackPanel x:Name="panelRandom" Tag="Random" Visibility="Collapsed">
+				</StackPanel>
+
+				<StackPanel x:Name="panelCarrier" Tag="Carrier" Visibility="Collapsed">
 				</StackPanel>-->
 
 				<!--<StackPanel x:Name="panelConfiguration" Tag="Configuration" Visibility="Collapsed">
