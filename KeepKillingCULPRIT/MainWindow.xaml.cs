@@ -671,7 +671,7 @@ namespace KeepKillingCULPRIT
 
 		private void run()
 		{
-			string content = "1:1,1;1,2;24,24;25,25|2:5,5;10,5;10,10;5,10";
+			string content = "1:1,1;1,2;24,24|2:5,5;10,5;10,10;5,10";
 
 			Dictionary<int, List<int[]>> formattedContent = new Dictionary<int, List<int[]>>();
 			int[] allowedSeparators = { '|', ':', ';', '.' };  // TODO: Verify valid separators
@@ -802,7 +802,9 @@ namespace KeepKillingCULPRIT
 			this.layer.Children.Clear();
 			foreach (int foldId in this.fold.Keys)
 			{
-				foreach(int[] vertices in this.fold[foldId])
+				double centerX = (this.minimumVertices[foldId][0] + this.maximumVertices[foldId][0]) / 2.0;
+				double centerY = (this.minimumVertices[foldId][1] + this.maximumVertices[foldId][1]) / 2.0;
+				foreach (int[] vertices in this.fold[foldId])
 				{
 					int x = vertices[0];
 					int y = vertices[1];
