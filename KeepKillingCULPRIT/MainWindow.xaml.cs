@@ -723,6 +723,8 @@ namespace KeepKillingCULPRIT
 	{
 		protected Dictionary<int, List<int[]>> fold { get; set; }
 		protected Dictionary<int, DateTime> order { get; set; }
+		protected Dictionary<int, int[]> minimumVertices { get; set; }
+		protected Dictionary<int, int[]> maximumVertices { get; set; }
 		protected Canvas layer { get; set; }
 		protected int depth { get; set; }
 		protected int length { get; set; }
@@ -734,6 +736,8 @@ namespace KeepKillingCULPRIT
 		{
 			this.fold = new Dictionary<int, List<int[]>>();
 			this.order = new Dictionary<int, DateTime>();
+			this.minimumVertices = new Dictionary<int, int[]>();
+			this.maximumVertices = new Dictionary<int, int[]>();
 		}
 
 		protected int getAutomaticFoldId()
@@ -747,6 +751,12 @@ namespace KeepKillingCULPRIT
 			{
 				this.fold.Add(foldId, new List<int[]>());
 				this.order.Add(foldId, DateTime.UtcNow);
+				this.minimumVertices.Add(foldId, new int[2]);
+				this.minimumVertices[foldId][0] = 1000000;
+				this.minimumVertices[foldId][1] = 1000000;
+				this.maximumVertices.Add(foldId, new int[2]);
+				this.maximumVertices[foldId][0] = 0;
+				this.maximumVertices[foldId][1] = 0;
 				return true;
 			}
 			return false;
@@ -770,6 +780,18 @@ namespace KeepKillingCULPRIT
 					if (!isOccupied)
 					{
 						this.fold[foldId].Add(vertices);
+						int providedVertexSum = vertices[0] + vertices[1];
+						int currentVertexSum = this.minimumVertices[foldId][0] + this.minimumVertices[foldId][1];
+						if (providedVertexSum < currentVertexSum)
+						{
+							this.minimumVertices[foldId][0] = vertices[0];
+							this.minimumVertices[foldId][1] = vertices[1];
+						}
+						if (providedVertexSum > currentVertexSum)
+						{
+							this.maximumVertices[foldId][0] = vertices[0];
+							this.maximumVertices[foldId][1] = vertices[1];
+						}
 					}
 				}
 			}
