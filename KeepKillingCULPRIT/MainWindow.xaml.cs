@@ -664,31 +664,38 @@ namespace KeepKillingCULPRIT
 		{
 			this.displayStandard = displayStandard;
 			this.layer = layer;
-			this.depth = depth ?? 10;
+			this.depth = depth ?? 25;
 			this.run();
 			this.resizeLayer();
 		}
 
 		private void run()
 		{
-			string content = "1.1,1.2,25.25";
+			string content = "1:1,1;1,2;24,24;25,25|2:5,5;10,5;10,10;5,10";
 
-			int fold1 = this.createFold();
-			int fold2 = this.createFold();
-			int fold3 = this.createFold();
-
-			int[] allowedSeparators = { '.' };
-			List<int[]> formattedContent = new List<int[]>();
-			foreach (string vertices in content.Split(','))
+			Dictionary<int, List<int[]>> formattedContent = new Dictionary<int, List<int[]>>();
+			int[] allowedSeparators = { '|', ':', ';', '.' };  // TODO: Verify valid separators
+			foreach (string fold in content.Trim().Split('|'))
 			{
-				// TODO: Verify valid separators
-				string[] vertex = vertices.Trim().Split('.');
-				formattedContent.Add(new int[2] { int.Parse(vertex[0]), int.Parse(vertex[1]) });
+				string[] foldData = fold.Trim().Split(':');
+				int foldId = int.Parse(foldData[0].Trim());
+				formattedContent.Add(foldId, new List<int[]>());
+				foreach (string vertices in foldData[1].Trim().Split(';'))
+				{
+					string[] vertex = vertices.Trim().Split(',');
+					formattedContent[foldId].Add(new int[2] { int.Parse(vertex[0]), int.Parse(vertex[1]) });
+				}
 			}
 
-			foreach (int[] vertices in formattedContent)
+			foreach (int foldId in formattedContent.Keys)
 			{
-				this.createGraph(fold1, vertices);
+				if (this.createFold(foldId))
+				{
+					foreach (int[] vertices in formattedContent[foldId])
+					{
+						this.createGraph(foldId, vertices);
+					}
+				}
 			}
 		}
 
@@ -729,12 +736,20 @@ namespace KeepKillingCULPRIT
 			this.order = new Dictionary<int, DateTime>();
 		}
 
-		protected int createFold()
+		protected int getAutomaticFoldId()
 		{
-			int foldId = this.fold.Count + 1;
-			this.fold.Add(foldId, new List<int[]>());
-			this.order.Add(foldId, DateTime.UtcNow);
-			return foldId;
+			return this.fold.Count + 1;
+		}
+
+		protected bool createFold(int foldId)
+		{
+			if (!this.fold.ContainsKey(foldId))
+			{
+				this.fold.Add(foldId, new List<int[]>());
+				this.order.Add(foldId, DateTime.UtcNow);
+				return true;
+			}
+			return false;
 		}
 
 		protected void createGraph(int foldId, int[] vertices)
