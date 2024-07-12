@@ -782,9 +782,12 @@ namespace KeepKillingCULPRIT
 			{
 				foreach(int[] vertices in this.fold[foldId])
 				{
-					if ((vertices[0] >= 1 && vertices[0] <= this.length) && (vertices[1] >= 1 && vertices[1] <= this.breadth))
+					int x = vertices[0];
+					int y = vertices[1];
+					int z = this.depth;
+					if ((x >= 1 && x <= this.length) && (y >= 1 && y <= this.breadth))
 					{
-						Port port = new Port(this.marginLeft + ((vertices[0] - 1) * this.depth), this.marginTop + ((vertices[1] - 1) * this.depth), this.depth);
+						Port port = new Port(((x - 1) * z) + this.marginLeft, ((y - 1) * z) + this.marginTop, z);
 						this.layer.Children.Add(port.getSquare());
 					}
 				}
