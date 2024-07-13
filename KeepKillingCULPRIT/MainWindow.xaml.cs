@@ -153,7 +153,7 @@ namespace KeepKillingCULPRIT
 			{
 				this.actions.Add(action);
 			}
-			this.bottomBarComboBoxPanelSwitcher.SelectedIndex = 4;
+			this.bottomBarComboBoxPanelSwitcher.SelectedIndex = 3;
 
 			this.killerKillCountCurrent = 0;
 			this.panelKillerTextBlockKillCountCurrent.Text = this.killerKillCountCurrent.ToString();
@@ -671,7 +671,7 @@ namespace KeepKillingCULPRIT
 
 		private void run()
 		{
-			string content = "1:1,1;1,2;24,24|2:5,5;10,5;10,10;5,10";
+			string content = "1:1,1;24,24|2:5,5;10,5;10,10;5,10";
 
 			Dictionary<int, List<int[]>> formattedContent = new Dictionary<int, List<int[]>>();
 			int[] allowedSeparators = { '|', ':', ';', '.' };  // TODO: Verify valid separators
@@ -844,6 +844,7 @@ namespace KeepKillingCULPRIT
 			square.Width = this.dimension;
 			square.Height = this.dimension;
 			square.Fill = this.color;
+			square.ToolTip = "X: " + this.horizontal + " | Y: " + this.vertical;
 			return square;
 		}
 
