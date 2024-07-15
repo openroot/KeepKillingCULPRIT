@@ -100,7 +100,7 @@
 
 				<StackPanel x:Name="panelCarrierSwift" Tag="Carrier Swift" Visibility="Collapsed">
 				</StackPanel>
-				
+
 				<StackPanel x:Name="panelGraphiteAccounts" Tag="Graphite Accounts" Visibility="Collapsed">
 				</StackPanel>
 
