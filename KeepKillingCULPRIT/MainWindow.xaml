@@ -103,9 +103,9 @@
 				
 				<StackPanel x:Name="panelGraphiteAccounts" Tag="Graphite Accounts" Visibility="Collapsed">
 				</StackPanel>
-				
+
 				<StackPanel x:Name="panelDividendApproximation" Tag="Dividend Approximation" Visibility="Collapsed">
-				</StackPanel>/
+				</StackPanel>
 
 				<!--<StackPanel x:Name="panelConfiguration" Tag="Configuration" Visibility="Collapsed">
 					<TextBlock x:Name="panelConfigurationTextBlock" FontSize="8" Margin="0, 0, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="{StaticResource colorBrush1}" Text="Configuration" />
