@@ -113,6 +113,27 @@
 				<StackPanel x:Name="panelStructuringPrerequisite" Tag="Structuring Prerequisite" Visibility="Collapsed">
 				</StackPanel>
 
+				<StackPanel x:Name="panelRadiusPoint" Tag="Radius Point" Visibility="Collapsed">
+				</StackPanel>
+
+				<StackPanel x:Name="panelCalendarCloud" Tag="Calendar Cloud" Visibility="Collapsed">
+				</StackPanel>
+
+				<StackPanel x:Name="panelLiquidReservation" Tag="Liquid Reservation" Visibility="Collapsed">
+				</StackPanel>
+
+				<StackPanel x:Name="panelApplyJudge" Tag="Apply Judge" Visibility="Collapsed">
+				</StackPanel>
+
+				<StackPanel x:Name="panelPracticalExecution" Tag="Practical Execution" Visibility="Collapsed">
+				</StackPanel>
+
+				<StackPanel x:Name="panelFingerClause" Tag="Finger Clause" Visibility="Collapsed">
+				</StackPanel>
+
+				<StackPanel x:Name="panelSoulTesting" Tag="Soul Testing" Visibility="Collapsed">
+				</StackPanel>
+
 				<!--<StackPanel x:Name="panelConfiguration" Tag="Configuration" Visibility="Collapsed">
 					<TextBlock x:Name="panelConfigurationTextBlock" FontSize="8" Margin="0, 0, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="{StaticResource colorBrush1}" Text="Configuration" />
 				</StackPanel>-->
