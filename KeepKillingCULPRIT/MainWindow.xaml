@@ -104,7 +104,7 @@
 				<StackPanel x:Name="panelGraphiteAccounts" Tag="Graphite Accounts" Visibility="Collapsed">
 				</StackPanel>
 
-				<StackPanel x:Name="panelDividendApproximation" Tag="Dividend Approximation" Visibility="Collapsed">
+				<StackPanel x:Name="panelTeadriedApproximationDividend" Tag="Teadried Approximation Dividend" Visibility="Collapsed">
 				</StackPanel>
 
 				<!--<StackPanel x:Name="panelConfiguration" Tag="Configuration" Visibility="Collapsed">
