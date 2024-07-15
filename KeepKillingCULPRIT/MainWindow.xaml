@@ -107,6 +107,9 @@
 				<StackPanel x:Name="panelTeadriedApproximationDividend" Tag="Teadried Approximation Dividend" Visibility="Collapsed">
 				</StackPanel>
 
+				<StackPanel x:Name="panelFunctionDesigner" Tag="Function Designer" Visibility="Collapsed">
+				</StackPanel>
+
 				<!--<StackPanel x:Name="panelConfiguration" Tag="Configuration" Visibility="Collapsed">
 					<TextBlock x:Name="panelConfigurationTextBlock" FontSize="8" Margin="0, 0, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="{StaticResource colorBrush1}" Text="Configuration" />
 				</StackPanel>-->
@@ -136,7 +139,7 @@
 
 		<Canvas>
 			<StackPanel x:Name="bottomBar" Margin="4, 0, 4, 0" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Canvas.Bottom="4">
-				<ComboBox x:Name="bottomBarComboBoxPanelSwitcher" Height="26" Width="100" Margin="0, 0, 0 ,0" Foreground="{StaticResource colorBrush1}" SelectionChanged="bottomBarComboBoxPanelSwitcherSelectionChanged"></ComboBox>
+				<ComboBox x:Name="bottomBarComboBoxPanelSwitcher" Height="26" Width="205" Margin="0, 0, 0 ,0" Foreground="{StaticResource colorBrush1}" SelectionChanged="bottomBarComboBoxPanelSwitcherSelectionChanged"></ComboBox>
 				<Button x:Name="bottomBarButtonSlidePanelPrevious" Height="26" Width="88" Margin="4, 0, 0, 0" Foreground="{StaticResource colorBrush1}" Content="Slide Previous" Click="bottomBarButtonSlidePanelPreviousClick" />
 				<Button x:Name="bottomBarButtonSlidePanelNext" Height="26" Width="88" Margin="4, 0, 0, 0" Foreground="{StaticResource colorBrush1}" Content="Slide Next" Click="bottomBarButtonSlidePanelNextClick" />
 			</StackPanel>
