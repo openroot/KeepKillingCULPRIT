@@ -578,6 +578,15 @@ namespace KeepKillingCULPRIT
 			panelWordpocTextBox.Text = string.Empty;
 		}
 
+		private void actionWordpocButtonClipboardPasteClick(object sender, RoutedEventArgs e)
+		{
+			string clipboardText = Clipboard.GetText();
+			if (clipboardText.Length > 0)
+			{
+				panelWordpocTextBox.Text = clipboardText;
+			}
+		}
+
 		#endregion
 
 		#region panelConfiguration
