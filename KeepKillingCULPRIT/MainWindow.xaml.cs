@@ -564,13 +564,18 @@ namespace KeepKillingCULPRIT
 						case 'z': case 'Z': sum += 6; break;
 					}
 				}
-				this.panelWordpocTextBlock.Text = sum.ToString();
+				this.panelWordpocTextBlockFactorSummation.Text = sum.ToString();
 			}
 			else
 			{
-				this.panelWordpocTextBlock.Text = string.Empty;
+				this.panelWordpocTextBlockFactorSummation.Text = string.Empty;
 			}
-			panelWordpocTextBlock1.Text = wordpoc.Length.ToString();
+			panelWordpocTextBlockSpaceCount.Text = wordpoc.Length.ToString();
+		}
+
+		private void actionWordpocButtonResetClick(object sender, RoutedEventArgs e)
+		{
+			panelWordpocTextBox.Text = string.Empty;
 		}
 
 		#endregion

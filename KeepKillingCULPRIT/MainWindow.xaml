@@ -83,10 +83,10 @@
 
 				<StackPanel x:Name="panelWordpoc" Tag="Word POC" Visibility="Visible">
 					<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-						<TextBlock x:Name="panelWordpocTextBlock1" FontSize="5" Margin="0, 0, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="{StaticResource colorBrush1}" Text="" />
-						<TextBlock x:Name="panelWordpocTextBlock" FontSize="17" Margin="0, 0, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="{StaticResource colorBrush1}" Text="" />
+						<TextBlock x:Name="panelWordpocTextBlockSpaceCount" FontSize="5" Margin="0, 0, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="{StaticResource colorBrush1}" Text="" />
+						<TextBlock x:Name="panelWordpocTextBlockFactorSummation" FontSize="17" Margin="0, 0, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="{StaticResource colorBrush1}" Text="" />
 					</StackPanel>
-					<TextBox x:Name="panelWordpocTextBox" FontSize="9" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="{StaticResource colorBrush1}" Text="" TextChanged="panelWordpocTextBoxTextChanged" />
+					<TextBox x:Name="panelWordpocTextBox" FontSize="9" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Justify" Foreground="{StaticResource colorBrush1}" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" AcceptsTab="True" AutoWordSelection="True" TextWrapping="Wrap" Text="" TextChanged="panelWordpocTextBoxTextChanged" />
 				</StackPanel>
 
 				<StackPanel x:Name="panelAviator" Tag="Aviator" Visibility="Collapsed">
@@ -162,6 +162,10 @@
 				<StackPanel x:Name="actionWordforest" Tag="Word Forest" Orientation="Horizontal" HorizontalAlignment="Stretch" Visibility="Collapsed">
 					<Button x:Name="actionWordforestButtonRefreshManual" Height="22" Margin="0, 0, 0, 0" Foreground="{StaticResource colorBrush0}" Background="{StaticResource colorBrush1}" Content="Manual Refresh" Click="actionWordforestButtonRefreshManualClick" />
 					<ToggleButton x:Name="actionWordforestToggleButtonRefreshAutomatic" Height="22" Margin="4, 0, 0, 0" Foreground="{StaticResource colorBrush0}" Background="{StaticResource colorBrush1}" Content="Automatic Refresh" Checked="actionWordforestToggleButtonRefreshAutomaticChecked" Unchecked="actionWordforestToggleButtonRefreshAutomaticUnchecked" />
+				</StackPanel>
+
+				<StackPanel x:Name="actionWordpoc" Tag="Word POC" Orientation="Horizontal" HorizontalAlignment="Stretch" Visibility="Collapsed">
+					<Button x:Name="actionWordpocButtonReset" Height="22" Margin="0, 0, 0, 0" Foreground="{StaticResource colorBrush0}" Background="{StaticResource colorBrush1}" Content="Reset" Click="actionWordpocButtonResetClick" />
 				</StackPanel>
 
 			</StackPanel>
