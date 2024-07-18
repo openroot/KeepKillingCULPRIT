@@ -570,6 +570,7 @@ namespace KeepKillingCULPRIT
 			{
 				this.panelWordpocTextBlock.Text = string.Empty;
 			}
+			panelWordpocTextBlock1.Text = wordpoc.Length.ToString();
 		}
 
 		#endregion
