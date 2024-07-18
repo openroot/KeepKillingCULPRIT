@@ -17,5 +17,8 @@
     <Setting Name="windowState" Type="System.Windows.WindowState" Scope="User">
       <Value Profile="(Default)">Normal</Value>
     </Setting>
+    <Setting Name="wordpocText" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

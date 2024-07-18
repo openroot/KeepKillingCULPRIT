@@ -138,6 +138,7 @@ namespace KeepKillingCULPRIT
 			this.Top = resume.windowTop;
 			this.Left = resume.windowLeft;
 			this.WindowState = resume.windowState;
+			this.panelWordpocTextBox.Text = resume.wordpocText;
 		}
 
 		private void originCovers()
@@ -521,6 +522,10 @@ namespace KeepKillingCULPRIT
 			this.panelWordforestTextBlock2.Text = await this.hostRestclient.seriesCheckinAsync("techyapi", "text") + "." + Environment.NewLine + await this.hostRestclient.seriesCheckinAsync("techyapi", "text") + ".";
 			this.panelWordforestTextBlock3.Text = await this.hostRestclient.seriesCheckinAsync("itsthisforthat", "text");
 			//this.panelWordforestStoryboard.Begin();
+			if (this.actionWordpocToggleButtonFeedFromWordforest.IsChecked ?? false)
+			{
+				this.panelWordpocTextBox.Text = this.panelWordforestTextBlock2.Text;
+			}
 		}
 
 		#endregion
@@ -564,18 +569,41 @@ namespace KeepKillingCULPRIT
 						case 'z': case 'Z': sum += 6; break;
 					}
 				}
+				this.panelWordpocTextBlockSpaceCount.Text = wordpoc.Length.ToString();
 				this.panelWordpocTextBlockFactorSummation.Text = sum.ToString();
 			}
 			else
 			{
+				this.panelWordpocTextBlockSpaceCount.Text = string.Empty;
 				this.panelWordpocTextBlockFactorSummation.Text = string.Empty;
 			}
-			panelWordpocTextBlockSpaceCount.Text = wordpoc.Length.ToString();
 		}
 
 		private void actionWordpocButtonResetClick(object sender, RoutedEventArgs e)
 		{
-			panelWordpocTextBox.Text = string.Empty;
+			this.panelWordpocTextBox.Text = string.Empty;
+		}
+
+		private void actionWordpocToggleButtonFeedFromWordforestChecked(object sender, RoutedEventArgs e)
+		{
+			this.actionWordforestToggleButtonRefreshAutomatic.IsChecked = true;
+		}
+
+		private void actionWordpocToggleButtonFeedFromWordforestUnchecked(object sender, RoutedEventArgs e)
+		{
+			this.actionWordforestToggleButtonRefreshAutomatic.IsChecked = false;
+		}
+
+		private void actionWordpocToggleButtonFeedFromWordforestToggle()
+		{
+			if (this.actionWordpocToggleButtonFeedFromWordforest.IsChecked ?? false)
+			{
+				this.actionWordpocToggleButtonFeedFromWordforest.IsChecked = false;
+			}
+			else if (!this.actionWordpocToggleButtonFeedFromWordforest.IsChecked ?? false)
+			{
+				this.actionWordpocToggleButtonFeedFromWordforest.IsChecked = true;
+			}
 		}
 
 		private void actionWordpocButtonClipboardPasteClick(object sender, RoutedEventArgs e)
@@ -613,7 +641,7 @@ namespace KeepKillingCULPRIT
 			resume.windowTop = this.Top;
 			resume.windowLeft = this.Left;
 			resume.windowState = this.WindowState;
-			resume.save();
+			resume.save(this.panelWordpocTextBox.Text);
 		}
 
 		protected override void OnClosed(EventArgs e)
@@ -637,6 +665,7 @@ namespace KeepKillingCULPRIT
 		public double windowHeight { get; set; }
 		public double windowWidth { get; set; }
 		public WindowState windowState { get; set; }
+		public string wordpocText { get; set; }
 
 		public Resume()
 		{
@@ -650,9 +679,10 @@ namespace KeepKillingCULPRIT
 			this.windowHeight = Properties.Settings.Default.windowHeight;
 			this.windowWidth = Properties.Settings.Default.windowWidth;
 			this.windowState = Properties.Settings.Default.windowState;
+			this.wordpocText = Properties.Settings.Default.wordpocText;
 		}
 
-		public void save()
+		public void save(string wordpocText)
 		{
 			if (this.windowState != System.Windows.WindowState.Minimized)
 			{
@@ -661,6 +691,7 @@ namespace KeepKillingCULPRIT
 				Properties.Settings.Default.windowHeight = this.windowHeight;
 				Properties.Settings.Default.windowWidth = this.windowWidth;
 				Properties.Settings.Default.windowState = this.windowState;
+				Properties.Settings.Default.wordpocText = wordpocText;
 
 				Properties.Settings.Default.Save();
 			}
