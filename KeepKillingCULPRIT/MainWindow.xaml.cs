@@ -569,8 +569,9 @@ namespace KeepKillingCULPRIT
 						case 'z': case 'Z': sum += 6; break;
 					}
 				}
-				this.panelWordpocTextBlockSpaceCount.Text = wordpoc.Length.ToString();
-				this.panelWordpocTextBlockFactorSummation.Text = sum.ToString();
+				int wordpocSpaceCount = wordpoc.Length;
+				this.panelWordpocTextBlockSpaceCount.Text = wordpocSpaceCount.ToString() + this.getFactorsOfNumber(wordpocSpaceCount);
+				this.panelWordpocTextBlockFactorSummation.Text = sum.ToString() + this.getFactorsOfNumber(sum);
 			}
 			else
 			{
@@ -613,6 +614,31 @@ namespace KeepKillingCULPRIT
 			{
 				panelWordpocTextBox.Text = clipboardText;
 			}
+		}
+
+		private string getFactorsOfNumber(int number)
+		{
+			string result = string.Empty;
+			if (number> 0)
+			{
+				int factor;
+				for (factor = 2; factor < number; factor++)
+				{
+					if (number % factor == 0)
+					{
+						result += factor.ToString() +", ";
+					}
+				}
+				if (result.Length > 0)
+				{
+					result = result.Substring(0, result.Length - 2);
+					if (result.Length > 0)
+					{
+						result = " {" + result + "}";
+					}
+				}
+			}
+			return result;
 		}
 
 		#endregion
