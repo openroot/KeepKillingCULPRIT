@@ -585,6 +585,28 @@ namespace KeepKillingCULPRIT
 			this.panelWordpocTextBox.Text = string.Empty;
 		}
 
+		private void actionWordpocToggleButtonFeedSpellcheckSystemLanguageChecked(object sender, RoutedEventArgs e)
+		{
+			this.panelWordpocTextBox.SpellCheck.IsEnabled = true;
+		}
+
+		private void actionWordpocToggleButtonFeedSpellcheckSystemLanguageUnchecked(object sender, RoutedEventArgs e)
+		{
+			this.panelWordpocTextBox.SpellCheck.IsEnabled = false;
+		}
+
+		private void actionWordpocToggleButtonFeedSpellcheckSystemLanguageToggle()
+		{
+			if (this.actionWordpocToggleButtonFeedSpellcheckSystemLanguage.IsChecked ?? false)
+			{
+				this.actionWordpocToggleButtonFeedSpellcheckSystemLanguage.IsChecked = false;
+			}
+			else if (!this.actionWordpocToggleButtonFeedSpellcheckSystemLanguage.IsChecked ?? false)
+			{
+				this.actionWordpocToggleButtonFeedSpellcheckSystemLanguage.IsChecked = true;
+			}
+		}
+
 		private void actionWordpocToggleButtonFeedFromWordforestChecked(object sender, RoutedEventArgs e)
 		{
 			this.actionWordforestToggleButtonRefreshAutomatic.IsChecked = true;
