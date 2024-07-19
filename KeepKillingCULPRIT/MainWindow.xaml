@@ -86,7 +86,7 @@
 						<TextBlock x:Name="panelWordpocTextBlockSpaceCount" FontSize="5" Margin="0, 0, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="{StaticResource colorBrush1}" Text="" />
 						<TextBlock x:Name="panelWordpocTextBlockFactorSummation" FontSize="17" Margin="0, 0, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="{StaticResource colorBrush1}" Text="" />
 					</StackPanel>
-					<TextBox x:Name="panelWordpocTextBox" FontSize="9" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Justify" Foreground="{StaticResource colorBrush1}" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" AcceptsTab="True" AutoWordSelection="True" TextWrapping="Wrap" Text="" TextChanged="panelWordpocTextBoxTextChanged" />
+					<TextBox x:Name="panelWordpocTextBox" FontSize="9" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Justify" Foreground="{StaticResource colorBrush1}" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" AcceptsTab="True" AutoWordSelection="True" TextWrapping="Wrap" Text="" TextChanged="panelWordpocTextBoxTextChanged" SpellCheck.IsEnabled="True" />
 				</StackPanel>
 
 				<StackPanel x:Name="panelAviator" Tag="Aviator" Visibility="Collapsed">
