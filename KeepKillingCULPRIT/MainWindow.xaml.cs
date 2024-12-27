@@ -641,7 +641,7 @@ namespace KeepKillingCULPRIT
 		private string getFactorsOfNumber(int number)
 		{
 			string result = string.Empty;
-			if (number> 0)
+			if (number > 0)
 			{
 				int factor;
 				for (factor = 2; factor < number; factor++)
