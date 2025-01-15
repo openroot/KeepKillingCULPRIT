@@ -58,6 +58,7 @@
 				<ToggleButton x:Name="topBarToggleButtonSummery" Height="26" Width="58" Margin="4, 0, 0, 0" Foreground="{StaticResource colorBrush1}" Content="summery" Checked="topBarToggleButtonSummeryChecked" Unchecked="topBarToggleButtonSummeryUnchecked" />
 				<TextBlock x:Name="topBarTextBlockTimeElapsed" FontSize= "14" Margin="32, 0, 0, 0" HorizontalAlignment="Center"  VerticalAlignment="Center" TextAlignment="Center" Foreground="{StaticResource colorBrush1}" Text="Foo Bar"/>
 				<TextBlock x:Name="topBarTextBlockKillCountCurrent" FontSize="19" Margin="32, 0, 0, 0" HorizontalAlignment="Center"  VerticalAlignment="Center" TextAlignment="Center" Foreground="{StaticResource colorBrush1}" Text="Foo Bar" />
+				<TextBlock x:Name="topBarTextBlockWordpoc" FontSize="19" Margin="32, 0, 0, 0" HorizontalAlignment="Center"  VerticalAlignment="Center" TextAlignment="Center" Foreground="{StaticResource colorBrush1}" Text="" />
 			</StackPanel>
 		</Canvas>
 		

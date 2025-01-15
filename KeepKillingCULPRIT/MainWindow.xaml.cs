@@ -572,6 +572,7 @@ namespace KeepKillingCULPRIT
 				int wordpocSpaceCount = wordpoc.Length;
 				this.panelWordpocTextBlockSpaceCount.Text = wordpocSpaceCount.ToString() + this.getFactorsOfNumber(wordpocSpaceCount);
 				this.panelWordpocTextBlockFactorSummation.Text = sum.ToString() + this.getFactorsOfNumber(sum);
+				this.topBarTextBlockWordpoc.Text = "L: " + this.panelWordpocTextBlockSpaceCount.Text + " - W: " + this.panelWordpocTextBlockFactorSummation.Text;
 			}
 			else
 			{
@@ -583,6 +584,7 @@ namespace KeepKillingCULPRIT
 		private void actionWordpocButtonResetClick(object sender, RoutedEventArgs e)
 		{
 			this.panelWordpocTextBox.Text = string.Empty;
+			this.topBarTextBlockWordpoc.Text = this.panelWordpocTextBox.Text;
 		}
 
 		private void actionWordpocToggleButtonFeedSpellcheckSystemLanguageChecked(object sender, RoutedEventArgs e)
