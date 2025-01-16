@@ -55,7 +55,7 @@ namespace KeepKillingCULPRIT
 		private DispatcherTimer timerKillerKillAutomatic { get; set; }
 		private DispatcherTimer timerTimerTimeAutomatic { get; set; }
 		private DispatcherTimer timerWordforestRefreshAutomatic { get; set; }
-		private string wordpocDataDumpFilePath { get; set; }
+		private string wordpocDumpDirectory { get; set; }
 		private Aviator aviator { get; set; }
 
 		#endregion
@@ -68,8 +68,8 @@ namespace KeepKillingCULPRIT
 
 			// Construct values
 			this.appStartedAt = DateTime.Now;
-			this.panelConfigurationWordpocDataDumpFilePathTextBox.Text = Properties.Settings.Default.wordpocDumpDirectory; // @"c:\\KeepKillingCULPRIT\Word POC\"
-			this.wordpocDataDumpFilePath = Properties.Settings.Default.wordpocDumpDirectory;
+			this.panelConfigurationTextBoxWordpocDumpDirectory.Text = Properties.Settings.Default.wordpocDumpDirectory; // @"C:\KeepKillingCULPRIT\Word POC\"
+			this.wordpocDumpDirectory = Properties.Settings.Default.wordpocDumpDirectory;
 		}
 
 		protected override void OnSourceInitialized(EventArgs e)
@@ -642,7 +642,7 @@ namespace KeepKillingCULPRIT
 			if (clipboardText.Length > 0)
 			{
 				panelWordpocTextBox.Text = clipboardText;
-				this.dumpToAssert(panelWordpocTextBox.Text);
+				this.wordpocDump(panelWordpocTextBox.Text);
 			}
 		}
 
@@ -671,8 +671,7 @@ namespace KeepKillingCULPRIT
 			return result;
 		}
 
-		// Temporary data dumping for debugging
-		private void dumpToAssert(string data)
+		private void wordpocDump(string data)
 		{
 			if (data.Length > 0)
 			{
@@ -682,17 +681,24 @@ namespace KeepKillingCULPRIT
 					temp += c.ToString() + " ";
 				}
 
-				string dump = DateTime.Now.ToLocalTime().ToString() + Environment.NewLine + Environment.NewLine;
-				dump += "[Original]" + Environment.NewLine + data + Environment.NewLine + Environment.NewLine;
-				dump += "[Assert]" + Environment.NewLine + temp;
-				dump += Environment.NewLine + Environment.NewLine + "--" + Environment.NewLine + Environment.NewLine;
+				string str = string.Empty;
+				str += DateTime.Now.ToLocalTime().ToString();
+				str += Environment.NewLine + Environment.NewLine;
+				str += "[Original]" + Environment.NewLine + data;
+				str += Environment.NewLine + Environment.NewLine;
+				str += "[Aspect]" + Environment.NewLine + "Length: " + data.Length;
+				str += Environment.NewLine + Environment.NewLine;
+				str += "[Assert]" + Environment.NewLine + temp;
+				str += Environment.NewLine + Environment.NewLine;
+				str += "--";
+				str += Environment.NewLine + Environment.NewLine;
 				try
 				{
-					File.AppendAllText(this.wordpocDataDumpFilePath + @"\dump.txt", dump);
+					File.AppendAllText(this.wordpocDumpDirectory + @"\assert.txt", str);
 				}
 				catch (Exception exception)
 				{
-					MessageBox.Show(exception.Message + Environment.NewLine + "Please update directory location at, Configuration.");
+					MessageBox.Show(exception.Message + Environment.NewLine + "Please update the Word POC - Dump Directory at, Configuration.");
 				}
 			}
 		}
@@ -703,28 +709,29 @@ namespace KeepKillingCULPRIT
 
 		private void actionConfigurationButtonUpdateClick(object sender, RoutedEventArgs e)
 		{
-			bool wordpocDumpPathDirectoryExsists = true;
-			FileInfo wordpocDumpPathFileInfo = new FileInfo(panelConfigurationWordpocDataDumpFilePathTextBox.Text);
-			if (!wordpocDumpPathFileInfo.Directory.Exists)
+			bool wordpocDumpDirectoryExists = true;
+			try
 			{
-				try
+				FileInfo wordpocDumpDirectoryFileInfo = new FileInfo(this.panelConfigurationTextBoxWordpocDumpDirectory.Text);
+				if (!wordpocDumpDirectoryFileInfo.Directory.Exists)
 				{
-					wordpocDumpPathFileInfo.Directory.Create();
-				}
-				catch (Exception exception)
-				{
-					wordpocDumpPathDirectoryExsists = false;
+					wordpocDumpDirectoryFileInfo.Directory.Create();
 				}
 			}
-			if (wordpocDumpPathDirectoryExsists)
+			catch (Exception exception)
 			{
-				Properties.Settings.Default.wordpocDumpDirectory = panelConfigurationWordpocDataDumpFilePathTextBox.Text;
+				wordpocDumpDirectoryExists = false;
+			}
+
+			if (wordpocDumpDirectoryExists)
+			{
+				Properties.Settings.Default.wordpocDumpDirectory = this.panelConfigurationTextBoxWordpocDumpDirectory.Text;
 				Properties.Settings.Default.Save();
-				this.wordpocDataDumpFilePath = panelConfigurationWordpocDataDumpFilePathTextBox.Text;
+				this.wordpocDumpDirectory = this.panelConfigurationTextBoxWordpocDumpDirectory.Text;
 			}
 			else
 			{
-				MessageBox.Show("Word POC DATA dump directory not saved.");
+				MessageBox.Show("Word POC - Dump Directory is not saved.");
 			}
 		}
 
