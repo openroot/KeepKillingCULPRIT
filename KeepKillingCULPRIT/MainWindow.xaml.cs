@@ -722,7 +722,6 @@ namespace KeepKillingCULPRIT
 			{
 				wordpocDumpDirectoryExists = false;
 			}
-
 			if (wordpocDumpDirectoryExists)
 			{
 				Properties.Settings.Default.wordpocDumpDirectory = this.panelConfigurationTextBoxWordpocDumpDirectory.Text;
