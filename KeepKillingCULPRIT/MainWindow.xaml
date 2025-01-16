@@ -61,7 +61,7 @@
 				<TextBlock x:Name="topBarTextBlockWordpoc" FontSize="19" Margin="32, 0, 0, 0" HorizontalAlignment="Center"  VerticalAlignment="Center" TextAlignment="Center" Foreground="{StaticResource colorBrush1}" Text="" />
 			</StackPanel>
 		</Canvas>
-		
+
 		<Viewbox x:Name="panelBar" Margin="4, 34, 4, 60" Visibility="Visible">
 			<StackPanel x:Name="panelSet">
 
@@ -141,10 +141,12 @@
 				<StackPanel x:Name="panelNitrogenSnapshot" Tag="Nitrogen Snapshot" Visibility="Collapsed">
 				</StackPanel>
 
-				<!--<StackPanel x:Name="panelConfiguration" Tag="Configuration" Visibility="Collapsed">
-					<TextBlock x:Name="panelConfigurationTextBlock" FontSize="8" Margin="0, 0, 0, 0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="{StaticResource colorBrush1}" Text="Configuration" />
-				</StackPanel>-->
-
+				<StackPanel x:Name="panelConfiguration" Tag="Configuration" Visibility="Collapsed">
+					<StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+						<TextBlock x:Name="panelConfigurationWordpocDataDumpFilePathTextBlock" FontSize="5" Margin="0, 0, 5, 0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Foreground="{StaticResource colorBrush1}" Text="Word POC - DATA Dump file path" />
+						<TextBox x:Name="panelConfigurationWordpocDataDumpFilePathTextBox" FontSize="5" MinWidth="150" Margin="0,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Justify" Foreground="{StaticResource colorBrush1}" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" AcceptsReturn="False" AcceptsTab="True" AutoWordSelection="True" TextWrapping="Wrap" Text="" />
+					</StackPanel>
+				</StackPanel>
 			</StackPanel>
 		</Viewbox>
 
@@ -170,6 +172,10 @@
 					<ToggleButton x:Name="actionWordpocToggleButtonFeedSpellcheckSystemLanguage" Height="22" Margin="4, 0, 0, 0" Foreground="{StaticResource colorBrush0}" Background="{StaticResource colorBrush1}" Content="Spellcheck in System Language" IsChecked="True" Checked="actionWordpocToggleButtonFeedSpellcheckSystemLanguageChecked" Unchecked="actionWordpocToggleButtonFeedSpellcheckSystemLanguageUnchecked" />
 					<ToggleButton x:Name="actionWordpocToggleButtonFeedFromWordforest" Height="22" Margin="4, 0, 0, 0" Foreground="{StaticResource colorBrush0}" Background="{StaticResource colorBrush1}" Content="Feed from Word Forest" Checked="actionWordpocToggleButtonFeedFromWordforestChecked" Unchecked="actionWordpocToggleButtonFeedFromWordforestUnchecked" />
 					<Button x:Name="actionWordpocButtonClipboardPaste" Height="22" Margin="4, 0, 0, 0" Foreground="{StaticResource colorBrush0}" Background="{StaticResource colorBrush1}" Content="Paste from Clipboard" Click="actionWordpocButtonClipboardPasteClick" />
+				</StackPanel>
+
+				<StackPanel x:Name="actionConfiguration" Tag="Configuration" Orientation="Horizontal" HorizontalAlignment="Stretch" Visibility="Collapsed">
+					<Button x:Name="actionConfigurationButtonUpdate" Height="22" Margin="0, 0, 0, 0" Foreground="{StaticResource colorBrush0}" Background="{StaticResource colorBrush1}" Content="Update" Click="actionConfigurationButtonUpdateClick" />
 				</StackPanel>
 
 			</StackPanel>

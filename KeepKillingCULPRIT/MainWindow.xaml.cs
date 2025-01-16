@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -54,6 +55,7 @@ namespace KeepKillingCULPRIT
 		private DispatcherTimer timerKillerKillAutomatic { get; set; }
 		private DispatcherTimer timerTimerTimeAutomatic { get; set; }
 		private DispatcherTimer timerWordforestRefreshAutomatic { get; set; }
+		private string wordpocDataDumpFilePath = @"q:\\KeepKillingCULPRIT\dump.txt";
 		private Aviator aviator { get; set; }
 
 		#endregion
@@ -578,6 +580,7 @@ namespace KeepKillingCULPRIT
 			{
 				this.panelWordpocTextBlockSpaceCount.Text = string.Empty;
 				this.panelWordpocTextBlockFactorSummation.Text = string.Empty;
+				this.topBarTextBlockWordpoc.Text = string.Empty;
 			}
 		}
 
@@ -637,6 +640,7 @@ namespace KeepKillingCULPRIT
 			if (clipboardText.Length > 0)
 			{
 				panelWordpocTextBox.Text = clipboardText;
+				this.dumpToAssert(panelWordpocTextBox.Text);
 			}
 		}
 
@@ -665,9 +669,40 @@ namespace KeepKillingCULPRIT
 			return result;
 		}
 
+		// Temporary data dumping for debugging
+		private void dumpToAssert(string data)
+		{
+			if (data.Length > 0)
+			{
+				string temp = string.Empty;
+				foreach (char c in data.ToCharArray())
+				{
+					temp += c.ToString() + " ";
+				}
+
+				string dump = DateTime.Now.ToLocalTime().ToString() + Environment.NewLine + Environment.NewLine;
+				dump += "[Original]" + Environment.NewLine + data + Environment.NewLine + Environment.NewLine;
+				dump += "[Assert]" + Environment.NewLine + temp;
+				dump += Environment.NewLine + Environment.NewLine + "--" + Environment.NewLine + Environment.NewLine;
+				try
+				{
+					File.AppendAllText(this.wordpocDataDumpFilePath, dump);
+				}
+				catch (Exception exception)
+				{
+					MessageBox.Show(exception.Message + Environment.NewLine + "Please create the following file at: " + this.wordpocDataDumpFilePath);
+				}
+			}
+		}
+
 		#endregion
 
 		#region panelConfiguration
+
+		private void actionConfigurationButtonUpdateClick(object sender, RoutedEventArgs e)
+		{
+			//MessageBox.Show(panelConfigurationWordpocDataDumpFilePathTextBox.Text);
+		}
 
 		#endregion
 
