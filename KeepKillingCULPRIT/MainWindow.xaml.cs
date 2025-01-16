@@ -68,8 +68,8 @@ namespace KeepKillingCULPRIT
 
 			// Construct values
 			this.appStartedAt = DateTime.Now;
-			this.panelConfigurationWordpocDataDumpFilePathTextBox.Text = Properties.Settings.Default.wordpocDumpPath; // @"c:\\KeepKillingCULPRIT\Word POC\"
-			this.wordpocDataDumpFilePath = Properties.Settings.Default.wordpocDumpPath;
+			this.panelConfigurationWordpocDataDumpFilePathTextBox.Text = Properties.Settings.Default.wordpocDumpDirectory; // @"c:\\KeepKillingCULPRIT\Word POC\"
+			this.wordpocDataDumpFilePath = Properties.Settings.Default.wordpocDumpDirectory;
 		}
 
 		protected override void OnSourceInitialized(EventArgs e)
@@ -718,7 +718,7 @@ namespace KeepKillingCULPRIT
 			}
 			if (wordpocDumpPathDirectoryExsists)
 			{
-				Properties.Settings.Default.wordpocDumpPath = panelConfigurationWordpocDataDumpFilePathTextBox.Text;
+				Properties.Settings.Default.wordpocDumpDirectory = panelConfigurationWordpocDataDumpFilePathTextBox.Text;
 				Properties.Settings.Default.Save();
 				this.wordpocDataDumpFilePath = panelConfigurationWordpocDataDumpFilePathTextBox.Text;
 			}

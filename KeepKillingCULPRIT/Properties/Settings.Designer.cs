@@ -98,12 +98,12 @@ namespace KeepKillingCULPRIT.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string wordpocDumpPath {
+        public string wordpocDumpDirectory {
             get {
-                return ((string)(this["wordpocDumpPath"]));
+                return ((string)(this["wordpocDumpDirectory"]));
             }
             set {
-                this["wordpocDumpPath"] = value;
+                this["wordpocDumpDirectory"] = value;
             }
         }
     }

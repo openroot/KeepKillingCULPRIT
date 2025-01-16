@@ -20,7 +20,7 @@
     <Setting Name="wordpocText" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="wordpocDumpPath" Type="System.String" Scope="User">
+    <Setting Name="wordpocDumpDirectory" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>
