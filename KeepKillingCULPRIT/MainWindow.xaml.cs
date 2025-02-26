@@ -78,7 +78,7 @@ namespace KeepKillingCULPRIT
 			try
 			{
 				// Feature invasive
-				this.invasiveHotkeys();
+				//this.invasiveHotkeys();
 				this.invasiveStoryboards();
 
 				// Register parse
