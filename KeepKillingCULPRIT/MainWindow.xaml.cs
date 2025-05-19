@@ -646,6 +646,14 @@ namespace KeepKillingCULPRIT
 			}
 		}
 
+		private void actionWordpocButtonClipboardCopyResultClick(object sender, RoutedEventArgs e)
+		{
+			if (topBarTextBlockWordpoc.Text.Length > 0)
+			{
+				Clipboard.SetText(topBarTextBlockWordpoc.Text);
+			}
+		}
+
 		private string getFactorsOfNumber(int number)
 		{
 			string result = string.Empty;
