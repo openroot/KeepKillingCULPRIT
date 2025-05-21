@@ -636,6 +636,14 @@ namespace KeepKillingCULPRIT
 			}
 		}
 
+		private void actionWordpocButtonClipboardCopyResultClick(object sender, RoutedEventArgs e)
+		{
+			if (topBarTextBlockWordpoc.Text.Length > 0)
+			{
+				Clipboard.SetText(topBarTextBlockWordpoc.Text);
+			}
+		}
+
 		private void actionWordpocButtonClipboardPasteClick(object sender, RoutedEventArgs e)
 		{
 			string clipboardText = Clipboard.GetText();
@@ -643,14 +651,6 @@ namespace KeepKillingCULPRIT
 			{
 				panelWordpocTextBox.Text = clipboardText;
 				this.wordpocDump(panelWordpocTextBox.Text);
-			}
-		}
-
-		private void actionWordpocButtonClipboardCopyResultClick(object sender, RoutedEventArgs e)
-		{
-			if (topBarTextBlockWordpoc.Text.Length > 0)
-			{
-				Clipboard.SetText(topBarTextBlockWordpoc.Text);
 			}
 		}
 
